@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private void showFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
+                .addToBackStack(null)
                 .commit();
     }
 
@@ -137,8 +138,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     }
 
     private Drawable[] loadScreenIcons() {
-        TypedArray ta = getResources().obtainTypedArray(R.array.ld_activityScreenIcons);
-        Log.e(String.valueOf(ta.length()), "loadScreenIcons: ");
+        TypedArray ta = getResources().obtainTypedArray(R.array.ld_activityScreenIcons);;
         Drawable[] icons = new Drawable[ta.length()];
         for (int i = 0; i < ta.length(); i++) {
             int id = ta.getResourceId(i, 0);

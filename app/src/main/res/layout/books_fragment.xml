@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
-    android:gravity="center">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_book"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <soup.neumorphism.NeumorphFloatingActionButton
+        android:id="@+id/add"
+        android:src="@drawable/ic_baseline_mail_outline_24"
+        android:layout_marginTop="700dp"
+        android:layout_marginLeft="320dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="books"
-        android:textAlignment="center" />
-</LinearLayout>
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

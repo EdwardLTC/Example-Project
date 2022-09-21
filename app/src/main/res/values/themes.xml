@@ -15,6 +15,7 @@
     </style>
 
     <style name="Theme.Assigment.NoActionBar">
+        <item name="android:windowContentTransitions">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

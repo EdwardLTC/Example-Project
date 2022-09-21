@@ -51,6 +51,52 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        String createCategory = "CREATE TABLE " + TABLE_NAME_CATEGORY +
+                "(" +
+                KEY_CATEGORY_ID + " TEXT PRIMARY KEY, " +
+                KEY_CATEGORY_NAME + " TEXT, " +
+                KEY_CATEGORY_IMAGE + " INTEGER " +
+                " )";
+        sqLiteDatabase.execSQL(createCategory);
+
+        String createBook = "CREATE TABLE " + TABLE_NAME_BOOKS +
+                "(" +
+                KEY_BOOKS_ID + " TEXT PRIMARY KEY, " +
+                KEY_CATEGORY_ID + " TEXT,  " +
+                KEY_BOOKS_NAME + " TEXT, " +
+                KEY_BOOKS_AUTHOR + " TEXT, " +
+                KEY_BOOKS_IMAGE + " INTEGER, " +
+                "FOREIGN  KEY (" + KEY_CATEGORY_ID + ") REFERENCES " + TABLE_NAME_CATEGORY + " (" + KEY_CATEGORY_ID + ")  ON DELETE CASCADE"+
+                " )";
+        sqLiteDatabase.execSQL(createBook);
+
+        String createAdmin = "CREATE TABLE " + TABLE_NAME_ADMIN +
+                "(" +
+                KEY_ADMIN_ID + " TEXT PRIMARY KEY, " +
+                KEY_ADMIN_USERNAME + " TEXT, " +
+                KEY_ADMIN_PASSWORD + " TEXT, " +
+                KEY_ADMIN_ROLE + " INTEGER " +
+                " )";
+        sqLiteDatabase.execSQL(createAdmin);
+
+        String createUser = "CREATE TABLE " + TABLE_NAME_USER +
+                "(" + KEY_USER_ID + " TEXT " + " )";
+        sqLiteDatabase.execSQL(createUser);
+
+        String createBill = "CREATE TABLE " + TABLE_NAME_BILL +
+                "(" +
+                KEY_BILL_ID + " TEXT PRIMARY KEY AUTOINCREMENT, " +
+                KEY_BOOKS_ID + " TEXT, " +
+                KEY_ADMIN_ID + " TEXT, " +
+                KEY_USER_ID + " TEXT, " +
+                KEY_BILL_checked + " INTEGER, " +
+                KEY_BILL_DATECREATE + " TEXT, " +
+                KEY_BILL_DATERETURN + " TEXT, " +
+                "FOREIGN  KEY (" + KEY_BOOKS_ID + ") REFERENCES " + TABLE_NAME_BOOKS + " (" + KEY_BOOKS_ID + "), "+
+                "FOREIGN  KEY (" + KEY_ADMIN_ID + ") REFERENCES " + TABLE_NAME_ADMIN + " (" + KEY_ADMIN_ID + "), "+
+                "FOREIGN  KEY (" + KEY_USER_ID + ") REFERENCES " + TABLE_NAME_USER + " (" + KEY_USER_ID + ") "+
+                " )";
+        sqLiteDatabase.execSQL(createBill);
 
     }
 
