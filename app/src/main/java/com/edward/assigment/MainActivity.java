@@ -18,6 +18,7 @@ import android.view.WindowManager;
 
 import com.edward.assigment.fragment.BooksFragment;
 import com.edward.assigment.fragment.ModeratorSystemFragment;
+import com.edward.assigment.fragment.OrderFragment;
 import com.edward.assigment.fragment.StatisticalFragment;
 import com.edward.assigment.fragment.StoreInfoFragment;
 import com.edward.assigment.menu.DrawerAdapter;
@@ -50,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
@@ -92,6 +92,11 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 break;
             case POS_MODERATOR:
                 fragment = new ModeratorSystemFragment();
+                showFragment(fragment);
+                slidingRootNav.closeMenu();
+                break;
+            case POS_ORDER:
+                fragment = new OrderFragment();
                 showFragment(fragment);
                 slidingRootNav.closeMenu();
                 break;
