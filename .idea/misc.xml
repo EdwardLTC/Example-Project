@@ -3,7 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/activity_main.xml" value="0.17" />
+        <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/activity_login.xml" value="0.30117753623188404" />
+        <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/activity_main.xml" value="0.27853260869565216" />
+        <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/books_fragment.xml" value="0.3026041666666667" />
+        <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/fragment_text.xml" value="0.30117753623188404" />
+        <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/menu_left.xml" value="0.21004098360655737" />
+        <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/moder_fragment.xml" value="0.30364583333333334" />
+        <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/oder_fragment.xml" value="0.30364583333333334" />
+        <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/statis_fragment.xml" value="0.3026041666666667" />
+        <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/store_fragment.xml" value="0.3026041666666667" />
       </map>
     </option>
   </component>

@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Assignment</string>
+    <string name="app_name">Assigment</string>
+    <string name="srn_drawer_open">open</string>
+    <string name="account_balance">Account Balance</string>
+    <string name="balance_currency">$</string>
+    <string name="balance_amount">524.99</string>
+    <string name="srn_ex_bad_content_view">bad content</string>
+    <string name="srn_ex_no_menu_view">no menu</string>
+    <string name="srn_drawer_close">close</string>
 </resources>
