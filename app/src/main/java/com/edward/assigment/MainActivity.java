@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     @Override
     public void onItemSelected(int position) {
         Fragment fragment;
-
         switch (position){
             case POS_BOOKS:
                 fragment = new BooksFragment();
