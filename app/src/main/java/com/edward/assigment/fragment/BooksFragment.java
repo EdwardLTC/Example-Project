@@ -43,20 +43,14 @@ public class BooksFragment extends Fragment implements BookCallback {
         initViews();
         initmdataBooks();
         setupBookAdapter();
-
         return view;
     }
     private void setupBookAdapter() {
         bookAdapter = new BookAdapter(mdata, this);
         rvBooks.setAdapter(bookAdapter);
-
     }
 
     private void initmdataBooks() {
-
-        // for testing purpos I'm creating a random set of books
-        // you may get your data from web service or firebase database.
-
         mdata = new ArrayList<>();
         mdata.add(new Book("sach cua Edward","Description nay do vai lz ","Edward",200,10,3,R.drawable.book1));
         mdata.add(new Book("sach cua Edward","Description nay do vai lz ","Edward",200,10,3,R.drawable.gatsby));
@@ -64,17 +58,13 @@ public class BooksFragment extends Fragment implements BookCallback {
         mdata.add(new Book("sach cua Edward","Description nay do vai lz ","Edward",200,10,3,R.drawable.thefault));
         mdata.add(new Book("sach cua Edward","Description nay do vai lz ","Edward",200,10,3,R.drawable.themessy));
         mdata.add(new Book("sach cua Edward","Description nay do vai lz ","Edward",200,10,3,R.drawable.thefault));
-
     }
 
     private void initViews() {
-
         rvBooks = view.findViewById(R.id.rv_book);
         rvBooks.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvBooks.setHasFixedSize(true);
-
         rvBooks.setItemAnimator(new CustomItemAnimator());
-
         view.findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,20 +74,6 @@ public class BooksFragment extends Fragment implements BookCallback {
 
     }
 
-    private void removeBook() {
-
-        mdata.remove(1);
-        bookAdapter.notifyItemRemoved(1);
-
-    }
-
-    private void addBook() {
-
-        Book book = new Book(R.drawable.nondesigner);
-        mdata.add(1,book);
-        bookAdapter.notifyItemInserted(1);
-
-    }
 
     @Override
     public void onBookItemClick(int pos, ImageView imgContainer, ImageView imgBook, TextView title,
@@ -109,8 +85,8 @@ public class BooksFragment extends Fragment implements BookCallback {
         ViewCompat.setTransitionName(imgBook, "bookTN");
 
 
-        setSharedElementReturnTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.share_image));
-        setExitTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.explode));
+//        setSharedElementReturnTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.share_image));
+//        setExitTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.explode));
 
         Fragment fragment = new BookDetailsFragment(mdata.get(pos));
         fragment.setSharedElementEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.share_image));

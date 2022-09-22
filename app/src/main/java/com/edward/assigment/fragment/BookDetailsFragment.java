@@ -22,7 +22,6 @@ import com.edward.assigment.R;
 import com.edward.assigment.modal.Book;
 
 public class BookDetailsFragment extends Fragment {
-    ImageView imgbook;
     RatingBar ratingBar;
     ImageView imgBook,imgContainer;
     TextView title,author,item_book_pagesrev,details_desc;
@@ -36,14 +35,15 @@ public class BookDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.book_details_fragment,container,false);
-        imgbook = view.findViewById(R.id.item_book_img);
-        ViewCompat.setTransitionName(imgbook, "bookTN");
+        imgBook = view.findViewById(R.id.item_book_img);
+        ViewCompat.setTransitionName(imgBook, "bookTN");
         ratingBar = view.findViewById(R.id.item_book_ratingbar);
         title = view.findViewById(R.id.item_book_title);
         author = view.findViewById(R.id.item_book_author);
         details_desc = view.findViewById(R.id.details_desc);
         item_book_pagesrev = view.findViewById(R.id.item_book_pagesrev);
         loadBookData();
+        imgBook.setOnClickListener(view -> requireActivity().onBackPressed());
         return view;
     }
 
@@ -52,7 +52,7 @@ public class BookDetailsFragment extends Fragment {
         Transition transition = TransitionInflater.from(requireContext())
                 .inflateTransition(R.transition.share_image);
         setSharedElementEnterTransition(transition);
-        Glide.with(this).load(item.getDrawableResource()).into(imgbook);
+        Glide.with(this).load(item.getDrawableResource()).into(imgBook);
         ratingBar.setRating(item.getRating());
         title.setText(String.valueOf(item.getTitle()));
         author.setText(String.valueOf(item.getAuthor()));

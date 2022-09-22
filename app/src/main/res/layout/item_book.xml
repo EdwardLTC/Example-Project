@@ -6,6 +6,7 @@
     android:layout_height="175dp">
 
     <soup.neumorphism.NeumorphImageView
+
         android:id="@+id/container"
         android:layout_width="0dp"
         android:layout_height="135dp"
@@ -34,6 +35,7 @@
         app:srcCompat="@drawable/book1" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/item_book_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,6 +48,7 @@
         app:layout_constraintTop_toTopOf="@+id/container" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/item_book_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,6 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/item_book_author" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/item_book_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,6 +83,7 @@
         app:layout_constraintTop_toTopOf="@+id/item_book_ratingbar" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/item_book_pagesrev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -30,6 +30,7 @@
        />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/item_book_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
         app:layout_constraintTop_toTopOf="@+id/item_book_img" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/item_book_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,6 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/item_book_title" />
 
     <RatingBar
+        android:outlineAmbientShadowColor="#53C133"
         android:id="@+id/item_book_ratingbar"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
@@ -66,6 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/container" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/item_book_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,6 +82,7 @@
         app:layout_constraintTop_toTopOf="@+id/item_book_ratingbar" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/item_book_pagesrev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -113,6 +118,8 @@
         tools:layout_editor_absoluteX="0dp">
 
         <TextView
+            android:textSize="24sp"
+            android:textColor="@color/black"
             android:id="@+id/details_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

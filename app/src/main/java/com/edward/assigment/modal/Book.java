@@ -3,6 +3,8 @@ package com.edward.assigment.modal;
 public class Book {
     private String title,description,author,imgUrl;
     private int pages,review;
+    private float rating;
+    private int drawableResource;
 
     public String getTitle() {
         return title;
@@ -68,8 +70,6 @@ public class Book {
         this.drawableResource = drawableResource;
     }
 
-    private float rating;
-    private int drawableResource;
     public Book(int drawableResource) {
         this.drawableResource = drawableResource;
     }
