@@ -31,7 +31,6 @@ import java.util.List;
 public class BooksFragment extends Fragment implements BookCallback {
     private RecyclerView rvBooks;
     private List<Book> mdata;
-    TapBarMenu tapBarMenu;
     View view;
 
     @Nullable
@@ -65,13 +64,6 @@ public class BooksFragment extends Fragment implements BookCallback {
         rvBooks.setHasFixedSize(true);
         rvBooks.setItemAnimator(new CustomItemAnimator());
 
-        tapBarMenu = view.findViewById(R.id.tapBarMenu);
-        tapBarMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tapBarMenu.toggle();
-            }
-        });
 
     }
 

@@ -1,0 +1,24 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+   <FrameLayout
+       android:id="@+id/layout"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       tools:layout_editor_absoluteX="0dp"
+       tools:layout_editor_absoluteY="0dp" />
+
+   <github.com.st235.lib_expandablebottombar.ExpandableBottomBar
+       android:id="@+id/expandable_bottom_bar"
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       app:exb_backgroundCornerRadius="16dp"
+       app:exb_itemInactiveColor="#353232"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

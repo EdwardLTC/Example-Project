@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.edward.assigment.fragment.BooksFragment;
+import com.edward.assigment.fragment.MainBookFragment;
 import com.edward.assigment.fragment.ModeratorSystemFragment;
 import com.edward.assigment.fragment.OrderFragment;
 import com.edward.assigment.fragment.StatisticalFragment;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         Fragment fragment;
         switch (position){
             case POS_BOOKS:
-                fragment = new BooksFragment();
+                fragment = new MainBookFragment();
                 showFragment(fragment);
                 slidingRootNav.closeMenu();
                 break;
