@@ -1,10 +1,12 @@
 package com.edward.assigment.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +22,14 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.edward.assigment.R;
 import com.edward.assigment.modal.Book;
+import com.taufiqrahman.reviewratings.BarLabels;
+import com.taufiqrahman.reviewratings.RatingReviews;
+
+import java.util.Random;
 
 public class BookDetailsFragment extends Fragment {
     RatingBar ratingBar;
-    ImageView imgBook, imgContainer;
+    ImageView imgBook;
     TextView title, author, item_book_pagesrev, details_desc;
 
     View view;
@@ -47,8 +53,7 @@ public class BookDetailsFragment extends Fragment {
         loadBookData();
 
         imgBook.setOnClickListener(view -> requireActivity().onBackPressed());
-
-
+        initGarph();
         return view;
     }
 
@@ -64,5 +69,27 @@ public class BookDetailsFragment extends Fragment {
         details_desc.setText(String.valueOf(item.getDescription()));
         String txt = item.getPages() + " Pages" + " |" + item.getReview() + " review ";
         item_book_pagesrev.setText(txt);
+    }
+
+    private void initGarph(){
+        RatingReviews ratingReviews = view.findViewById(R.id.rating_reviews);
+
+        Pair[] colors = new Pair[]{
+                new Pair<>(Color.parseColor("#0e9d58"), Color.parseColor("#1e88e5")),
+                new Pair<>(Color.parseColor("#bfd047"), Color.parseColor("#5c6bc0")),
+                new Pair<>(Color.parseColor("#ffc105"), Color.parseColor("#d81b60")),
+                new Pair<>(Color.parseColor("#ef7e14"), Color.parseColor("#8bc34a")),
+                new Pair<>(Color.parseColor("#d36259"), Color.parseColor("#ea80fc"))
+        };
+
+        int[] raters = new int[]{
+                new Random().nextInt(100),
+                new Random().nextInt(100),
+                new Random().nextInt(100),
+                new Random().nextInt(100),
+                new Random().nextInt(100)
+        };
+
+        ratingReviews.createRatingBars(100, BarLabels.STYPE1, colors, raters);
     }
 }

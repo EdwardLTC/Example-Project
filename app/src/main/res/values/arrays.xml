@@ -1,8 +1,8 @@
 <resources>
     <string-array name="ld_activityScreenTitles">
         <item>Books</item>
-        <item>Moderator System</item>
         <item>Orders </item>
+        <item>Moderator System</item>
         <item>Statistical</item>
         <item>Store</item>
         <item/>
@@ -10,10 +10,23 @@
     </string-array>
     <array name="ld_activityScreenIcons">
         <item>@drawable/ic_baseline_library_books_24</item>
-        <item>@drawable/ic_baseline_account_box_24</item>
         <item>@drawable/ic_baseline_shopping_cart_24</item>
+        <item>@drawable/ic_baseline_account_box_24</item>
         <item>@drawable/ic_baseline_mail_outline_24</item>
         <item>@drawable/ic_baseline_storefront_24</item>
+        <item>0</item>
+        <item>@drawable/ic_logout_grey600_24dp</item>
+    </array>
+
+    <string-array name="ld_ModScreenTitles">
+        <item>Books</item>
+        <item>Orders </item>
+        <item/>
+        <item>Log Out</item>
+    </string-array>
+    <array name="ld_ModScreenIcons">
+        <item>@drawable/ic_baseline_library_books_24</item>
+        <item>@drawable/ic_baseline_shopping_cart_24</item>
         <item>0</item>
         <item>@drawable/ic_logout_grey600_24dp</item>
     </array>

@@ -44,7 +44,11 @@ public class MainBookFragment extends Fragment {
         expandableBottomBar.setOnItemSelectedListener((view1, menuItem, aBoolean) -> {
             switch (menuItem.getId()) {
                 case R.id.home:
+                    showFragment(new BooksFragment());
+                    break;
                 case R.id.addBook:
+                    showFragment(new AddBookFragment());
+                    break;
                 case R.id.addCategory:
                     showFragment(new BooksFragment());
                     break;

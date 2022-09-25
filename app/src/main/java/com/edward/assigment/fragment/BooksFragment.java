@@ -50,12 +50,12 @@ public class BooksFragment extends Fragment implements BookCallback {
 
     private void initData() {
         mdata = new ArrayList<>();
-        mdata.add(new Book("sach cua Edward", "Description nay do vai lz ", "Edward", 200, 10, 3, R.drawable.book1));
-        mdata.add(new Book("sach cua Edward", "Description nay do vai lz ", "Edward", 200, 10, 3, R.drawable.gatsby));
-        mdata.add(new Book("sach cua Edward", "Description nay do vai lz ", "Edward", 200, 10, 3, R.drawable.gatsby2));
-        mdata.add(new Book("sach cua Edward", "Description nay do vai lz ", "Edward", 200, 10, 3, R.drawable.thefault));
-        mdata.add(new Book("sach cua Edward", "Description nay do vai lz ", "Edward", 200, 10, 3, R.drawable.themessy));
-        mdata.add(new Book("sach cua Edward", "Description nay do vai lz ", "Edward", 200, 10, 3, R.drawable.thefault));
+        mdata.add(new Book("sach cua Edward", "Description nay do lam ", "Edward", 200, 10, 3, R.drawable.book1));
+        mdata.add(new Book("sach cua Edward", "Description nay do lam ", "Edward", 200, 10, 3.5F, R.drawable.gatsby));
+        mdata.add(new Book("sach cua Edward", "Description nay do lam ", "Edward", 200, 10, 3.4F, R.drawable.gatsby2));
+        mdata.add(new Book("sach cua Edward", "Description nay do lam ", "Edward", 200, 10, 1, R.drawable.thefault));
+        mdata.add(new Book("sach cua Edward", "Description nay do lam ", "Edward", 200, 10, 3, R.drawable.themessy));
+        mdata.add(new Book("sach cua Edward", "Description nay do lam ", "Edward", 200, 10, 3, R.drawable.thefault));
     }
 
     private void initViews() {
@@ -75,16 +75,16 @@ public class BooksFragment extends Fragment implements BookCallback {
                                 RatingBar ratingBar) {
 
 
-            ViewCompat.setTransitionName(imgBook, "bookTN");
-            Fragment fragment = new BookDetailsFragment(mdata.get(pos));
-            fragment.setSharedElementEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.share_image));
-            fragment.setEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.explode));
+        ViewCompat.setTransitionName(imgBook, "bookTN");
+        Fragment fragment = new BookDetailsFragment(mdata.get(pos));
+        fragment.setSharedElementEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.share_image));
+        fragment.setEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.explode));
 
-            FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .addToBackStack(null)
-                    .addSharedElement(imgBook, "bookTN");
-            ft.commit();
+        FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, fragment)
+                .addToBackStack(null)
+                .addSharedElement(imgBook, "bookTN");
+        ft.commit();
 
     }
 
