@@ -50,7 +50,7 @@ public class MainBookFragment extends Fragment {
                     showFragment(new AddBookFragment());
                     break;
                 case R.id.addCategory:
-                    showFragment(new BooksFragment());
+                    showFragment(new AddCategoryFragment());
                     break;
             }
             return null;

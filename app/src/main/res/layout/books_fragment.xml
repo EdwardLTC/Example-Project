@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFF"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:layout_marginTop="20dp"
+        app:mt_placeholder="Search"
+        app:mt_speechMode="false"
+        app:mt_placeholderColor="@color/text_color"
+        android:id="@+id/search"
+        app:mt_hint="search"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="20dp"
         android:id="@+id/rv_book"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</RelativeLayout>
+</LinearLayout>

@@ -44,4 +44,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     implementation 'com.github.st235:expandablebottombar:1.5.1'
     implementation("me.nikhilchaudhari:composeNeumorphism:1.0.0-alpha02")
+    implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
 }

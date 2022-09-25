@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        ROLE = 1;
+        ROLE = 0;
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         slidingRootNav = new SlidingRootNavBuilder(this)

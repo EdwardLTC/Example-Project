@@ -19,7 +19,7 @@ import com.edward.assigment.modal.Book;
 
 import java.util.List;
 
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.bookviewholder> {
+public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
     List<Book> mdata;
     BookCallback callback;
@@ -32,16 +32,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.bookviewholder
 
     @NonNull
     @Override
-    public bookviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_book,parent,false);
 
-        return new bookviewholder(view);
+        return new BookViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull bookviewholder holder, int position) {
+    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
 
         // bind book item data here
         // I'm just going to bint the book image..
@@ -66,13 +66,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.bookviewholder
         return mdata.size();
     }
 
-    public class bookviewholder extends RecyclerView.ViewHolder {
+    public class BookViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgBook,imgContainer;
         TextView title,author,pages,rate;
         RatingBar ratingBar;
 
-        public bookviewholder(@NonNull View itemView) {
+        public BookViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imgBook = itemView.findViewById(R.id.item_book_img);
