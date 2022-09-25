@@ -1,4 +1,4 @@
-package com.edward.assigment.fragment;
+package com.edward.assigment.fragment.books;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +15,7 @@ import com.edward.assigment.R;
 
 import github.com.st235.lib_expandablebottombar.ExpandableBottomBar;
 import github.com.st235.lib_expandablebottombar.Menu;
-import github.com.st235.lib_expandablebottombar.MenuItem;
 import github.com.st235.lib_expandablebottombar.MenuItemDescriptor;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function3;
 
 public class MainBookFragment extends Fragment {
 

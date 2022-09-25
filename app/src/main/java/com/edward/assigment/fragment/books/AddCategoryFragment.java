@@ -1,4 +1,4 @@
-package com.edward.assigment.fragment;
+package com.edward.assigment.fragment.books;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import com.edward.assigment.R;
 
-public class StoreInfoFragment extends Fragment {
+public class AddCategoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.store_fragment,container,false);
+        View view = inflater.inflate(R.layout.add_catergory_fragment,container,false);
         return view;
     }
 }

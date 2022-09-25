@@ -1,4 +1,4 @@
-package com.edward.assigment.fragment;
+package com.edward.assigment.fragment.books;
 
 import android.graphics.Color;
 import android.os.Bundle;

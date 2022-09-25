@@ -1,4 +1,4 @@
-package com.edward.assigment.fragment;
+package com.edward.assigment.fragment.books;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -28,7 +28,6 @@ import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class BooksFragment extends Fragment implements BookCallback {
     private RecyclerView rvBooks;

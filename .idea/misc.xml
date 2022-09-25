@@ -12,23 +12,27 @@
         <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/oder_fragment.xml" value="0.30364583333333334" />
         <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/statis_fragment.xml" value="0.3026041666666667" />
         <entry key="..\:/Example Project/Example-Project/Assigment/app/src/main/res/layout/store_fragment.xml" value="0.3026041666666667" />
+        <entry key="..\:/Example Project/Example-Project/app/src/main/res/drawable/hiden_password.xml" value="0.169" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/drawable/ic_baseline_library_books_24.xml" value="0.169" />
+        <entry key="..\:/Example Project/Example-Project/app/src/main/res/drawable/show_password.xml" value="0.169" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/activities/layout/add_book_fragment.xml" value="0.3020833333333333" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/activity_login.xml" value="0.30364583333333334" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/activity_main.xml" value="0.14766970618034447" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/add_book_fragment.xml" value="0.303125" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/add_catergory_fragment.xml" value="0.3020833333333333" />
+        <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/add_mod_fragment.xml" value="0.3020833333333333" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/bar.xml" value="0.303125" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/bar_two.xml" value="0.303125" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/book_details_fragment.xml" value="0.30364583333333334" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/books_fragment.xml" value="0.30364583333333334" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/drop_spinner.xml" value="0.3020833333333333" />
+        <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/item_admin.xml" value="0.303125" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/item_book.xml" value="0.30364583333333334" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/item_option.xml" value="0.30364583333333334" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/layout/add_book_fragment.xml" value="0.3020833333333333" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/main_book_fragment.xml" value="0.303125" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/menu_left.xml" value="0.30364583333333334" />
-        <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/moder_fragment.xml" value="0.30364583333333334" />
+        <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/moder_fragment.xml" value="0.25" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/oder_fragment.xml" value="0.30364583333333334" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/spinner_view.xml" value="0.303125" />
         <entry key="..\:/Example Project/Example-Project/app/src/main/res/layout/statis_fragment.xml" value="0.30364583333333334" />

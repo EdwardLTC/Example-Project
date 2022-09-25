@@ -9,20 +9,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.edward.assigment.fragment.BooksFragment;
-import com.edward.assigment.fragment.MainBookFragment;
-import com.edward.assigment.fragment.ModeratorSystemFragment;
-import com.edward.assigment.fragment.OrderFragment;
-import com.edward.assigment.fragment.StatisticalFragment;
-import com.edward.assigment.fragment.StoreInfoFragment;
+import com.edward.assigment.fragment.books.MainBookFragment;
+import com.edward.assigment.fragment.admin.ModeratorSystemFragment;
+import com.edward.assigment.fragment.oder.OrderFragment;
+import com.edward.assigment.fragment.statistical.StatisticalFragment;
+import com.edward.assigment.fragment.store.StoreInfoFragment;
 import com.edward.assigment.menu.DrawerAdapter;
 import com.edward.assigment.menu.DrawerItem;
 import com.edward.assigment.menu.SimpleItem;

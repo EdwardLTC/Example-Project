@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.edward.assigment.fragment.BookDetailsFragment">
+    tools:context="com.edward.assigment.fragment.books.BookDetailsFragment">
 
     <soup.neumorphism.NeumorphCardView
-        android:id="@+id/container"
+        android:id="@+id/containerBook"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:background="@drawable/container_bg"
@@ -65,7 +65,7 @@
         android:outlineAmbientShadowColor="#53C133"
         android:transitionName="rateTN"
         app:layout_constraintStart_toEndOf="@+id/item_book_img"
-        app:layout_constraintTop_toBottomOf="@+id/container" />
+        app:layout_constraintTop_toBottomOf="@+id/containerBook" />
 
     <TextView
         android:id="@+id/item_book_score"
@@ -100,8 +100,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/container"
-        app:layout_constraintTop_toTopOf="@+id/container"
+        app:layout_constraintEnd_toEndOf="@+id/containerBook"
+        app:layout_constraintTop_toTopOf="@+id/containerBook"
         app:srcCompat="@drawable/ic_favorite_black_24dp"
         app:tint="@color/fav_icon_tint" />
 
@@ -171,12 +171,12 @@
         app:layout_constraintTop_toBottomOf="@+id/rating_reviews">
 
         <soup.neumorphism.NeumorphButton
-            android:id="@+id/share"
+            android:id="@+id/edit"
             style="@style/Widget.Neumorph.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="share" />
+            android:text="edit" />
 
         <soup.neumorphism.NeumorphButton
             android:layout_weight="1"

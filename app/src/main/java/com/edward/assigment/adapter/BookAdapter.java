@@ -76,7 +76,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             super(itemView);
 
             imgBook = itemView.findViewById(R.id.item_book_img);
-            imgContainer = itemView.findViewById(R.id.container);
+            imgContainer = itemView.findViewById(R.id.containerBook);
             title = itemView.findViewById(R.id.item_book_title);
             author = itemView.findViewById(R.id.item_book_author);
             pages = itemView.findViewById(R.id.item_book_pagesrev);
