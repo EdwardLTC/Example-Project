@@ -2,6 +2,8 @@ package com.edward.assigment.fragment.books;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.transition.ChangeBounds;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -10,6 +12,7 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -27,11 +30,14 @@ import com.taufiqrahman.reviewratings.RatingReviews;
 
 import java.util.Random;
 
+import soup.neumorphism.NeumorphButton;
+
 public class BookDetailsFragment extends Fragment {
     RatingBar ratingBar;
     ImageView imgBook;
-    TextView title, author, item_book_pagesrev, details_desc;
-
+    TextView item_book_pagesrev;
+    EditText title, author, details_desc;
+    NeumorphButton btnEdit;
     View view;
     Book item;
 
@@ -50,8 +56,9 @@ public class BookDetailsFragment extends Fragment {
         author = view.findViewById(R.id.item_book_author);
         details_desc = view.findViewById(R.id.details_desc);
         item_book_pagesrev = view.findViewById(R.id.item_book_pagesrev);
+        btnEdit = view.findViewById(R.id.edit);
         loadBookData();
-
+        initEdit();
         imgBook.setOnClickListener(view -> requireActivity().onBackPressed());
         initGarph();
         return view;
@@ -71,7 +78,66 @@ public class BookDetailsFragment extends Fragment {
         item_book_pagesrev.setText(txt);
     }
 
-    private void initGarph(){
+    private void initEdit() {
+        title.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                btnEdit.setEnabled(!title.getText().toString().equals(item.getTitle()) ||
+                        !author.getText().toString().equals(item.getAuthor()) ||
+                        !details_desc.getText().toString().equals(item.getDescription()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        author.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                btnEdit.setEnabled(!title.getText().toString().equals(item.getTitle()) ||
+                        !author.getText().toString().equals(item.getAuthor()) ||
+                        !details_desc.getText().toString().equals(item.getDescription()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        details_desc.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                btnEdit.setEnabled(!title.getText().toString().equals(item.getTitle()) ||
+                        !author.getText().toString().equals(item.getAuthor()) ||
+                        !details_desc.getText().toString().equals(item.getDescription()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void initGarph() {
         RatingReviews ratingReviews = view.findViewById(R.id.rating_reviews);
 
         Pair[] colors = new Pair[]{

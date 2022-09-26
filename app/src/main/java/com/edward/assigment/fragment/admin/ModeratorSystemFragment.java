@@ -1,11 +1,11 @@
 package com.edward.assigment.fragment.admin;
 
 import android.os.Bundle;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,13 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.edward.assigment.R;
-import com.edward.assigment.adapter.AdminAdapter;
-import com.edward.assigment.adapter.AdminCallBack;
-import com.edward.assigment.adapter.BookAdapter;
-import com.edward.assigment.adapter.CustomItemAnimator;
+import com.edward.assigment.adapter.admin.AdminAdapter;
+import com.edward.assigment.adapter.admin.AdminCallBack;
 import com.edward.assigment.modal.Admin;
-import com.edward.assigment.modal.Book;
-import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +39,7 @@ public class ModeratorSystemFragment extends Fragment implements AdminCallBack {
         initFab();
         return view;
     }
+
     private void setupAdminAdapter() {
         adminAdapter = new AdminAdapter(mdata, this);
         rvAdmins.setAdapter(adminAdapter);
@@ -50,10 +47,10 @@ public class ModeratorSystemFragment extends Fragment implements AdminCallBack {
 
     private void initData() {
         mdata = new ArrayList<>();
-        mdata.add(new Admin("1","Edward","new Pass",1));
-        mdata.add(new Admin("2","Edward","new Pass",1));
-        mdata.add(new Admin("3","Edward","new Pass",1));
-        mdata.add(new Admin("4","Edward","new Pass",1));
+        mdata.add(new Admin("1", "Edward", "new Pass", 1));
+        mdata.add(new Admin("2", "Edward", "new Pass", 1));
+        mdata.add(new Admin("3", "Edward", "new Pass", 1));
+        mdata.add(new Admin("4", "Edward", "new Pass", 1));
     }
 
     private void initViews() {
@@ -62,13 +59,18 @@ public class ModeratorSystemFragment extends Fragment implements AdminCallBack {
         rvAdmins.setHasFixedSize(true);
     }
 
-    private void initFab(){
+    private void initFab() {
         NeumorphFloatingActionButton fab = view.findViewById(R.id.fab);
-        fab.setOnClickListener(view -> requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new AddModFragment()).commit());
+        fab.setOnClickListener(view -> requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new AddModFragment()).commit());
     }
 
     @Override
     public void onAdminItemClick(int pos, TextView adminName, TextView adminId, TextView role) {
-        Toast.makeText(requireContext(), "click", Toast.LENGTH_SHORT).show();
+        Fragment fragment = new ModDetailsFragment(mdata.get(pos));
+        fragment.setSharedElementEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.share_image));
+        fragment.setEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.explode));
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, fragment)
+                .addToBackStack(null).commit();
     }
 }

@@ -31,7 +31,7 @@ public class AddModFragment extends Fragment {
         return view;
     }
 
-    private void initView() {
+    private void initView() {   
         name = view.findViewById(R.id.modname);
         id = view.findViewById(R.id.modid);
         pass = view.findViewById(R.id.modPass);

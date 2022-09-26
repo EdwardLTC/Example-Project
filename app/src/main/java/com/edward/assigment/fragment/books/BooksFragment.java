@@ -20,8 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.edward.assigment.R;
-import com.edward.assigment.adapter.BookAdapter;
-import com.edward.assigment.adapter.BookCallback;
+import com.edward.assigment.adapter.book.BookAdapter;
+import com.edward.assigment.adapter.book.BookCallback;
 import com.edward.assigment.adapter.CustomItemAnimator;
 import com.edward.assigment.modal.Book;
 import com.mancj.materialsearchbar.MaterialSearchBar;

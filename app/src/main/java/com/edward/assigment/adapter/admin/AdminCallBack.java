@@ -1,4 +1,4 @@
-package com.edward.assigment.adapter;
+package com.edward.assigment.adapter.admin;
 
 import android.widget.ImageView;
 import android.widget.RatingBar;

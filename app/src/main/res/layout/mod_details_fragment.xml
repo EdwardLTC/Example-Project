@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <soup.neumorphism.NeumorphCardView
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:neumorph_shapeType="basin">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_baseline_person_24" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="170dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="username: " />
+
+                <EditText
+                    android:background="@null"
+                    android:textSize="14sp"
+                    android:id="@+id/nameAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="admin"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="user id: " />
+
+                <TextView
+                    android:background="@null"
+                    android:textSize="14sp"
+                    android:id="@+id/idAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="ps01"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="username: " />
+
+                <TextView
+                    android:background="@null"
+                    android:textSize="14sp"
+                    android:id="@+id/roleAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="role"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphCardView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:padding="16dp"
+        app:neumorph_shapeType="basin">
+
+        <EditText
+            android:gravity="top"
+            android:background="@null"
+            android:textSize="14sp"
+            android:id="@+id/modDes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:text="destription cuar moderator"
+            android:textColor="@color/text_color" />
+    </soup.neumorphism.NeumorphCardView>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rating_reviews">
+
+        <soup.neumorphism.NeumorphButton
+            android:enabled="false"
+            app:neumorph_shapeType="basin"
+            android:id="@+id/edit"
+            style="@style/Widget.Neumorph.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="edit" />
+
+        <soup.neumorphism.NeumorphButton
+            app:neumorph_shapeType="basin"
+            android:layout_weight="1"
+            android:id="@+id/child1"
+            style="@style/Widget.Neumorph.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="more" />
+
+        <soup.neumorphism.NeumorphButton
+            app:neumorph_shapeType="basin"
+            android:layout_weight="1"
+            android:id="@+id/child2"
+            style="@style/Widget.Neumorph.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="del" />
+    </LinearLayout>
+</LinearLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context="com.edward.assigment.fragment.books.BookDetailsFragment">
 
     <soup.neumorphism.NeumorphCardView
@@ -28,7 +29,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/book1" />
 
-    <TextView
+    <EditText
+        android:background="@null"
         android:id="@+id/item_book_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +44,9 @@
         app:layout_constraintStart_toEndOf="@+id/item_book_img"
         app:layout_constraintTop_toTopOf="@+id/item_book_img" />
 
-    <TextView
+    <EditText
+        android:textSize="14sp"
+        android:background="@null"
         android:id="@+id/item_book_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -116,16 +120,17 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp">
 
-        <TextView
+        <EditText
+            android:gravity="top"
             android:id="@+id/details_desc"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="32dp"
             android:lineSpacingExtra="8sp"
             android:text="des"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textColor="@color/text_color"
+            android:textSize="14sp" />
 
     </soup.neumorphism.NeumorphCardView>
 
@@ -169,8 +174,9 @@
         android:weightSum="3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rating_reviews">
-
         <soup.neumorphism.NeumorphButton
+            android:enabled="false"
+            app:neumorph_shapeType="basin"
             android:id="@+id/edit"
             style="@style/Widget.Neumorph.Button"
             android:layout_width="match_parent"
@@ -179,6 +185,7 @@
             android:text="edit" />
 
         <soup.neumorphism.NeumorphButton
+            app:neumorph_shapeType="basin"
             android:layout_weight="1"
             android:id="@+id/child1"
             style="@style/Widget.Neumorph.Button"
@@ -187,6 +194,7 @@
             android:text="more" />
 
         <soup.neumorphism.NeumorphButton
+            app:neumorph_shapeType="basin"
             android:layout_weight="1"
             android:id="@+id/child2"
             style="@style/Widget.Neumorph.Button"
