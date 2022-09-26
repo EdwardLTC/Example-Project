@@ -132,11 +132,11 @@ public class Database extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(initCategory);
 
         String initBook = "INSERT INTO " + TABLE_NAME_BOOKS + " VALUES" +
-                "('B1','C1','Sach cua Edward','Edward',0,'Des nay cua sach',3.1)," +
-                "('B2','C2','Sach cua Edward','Edward',0,'Des nay cua sach',3.1)," +
-                "('B3','C3','Sach cua Edward','Edward',0,'Des nay cua sach',3.1)," +
-                "('B4','C4','Sach cua Edward','Edward',0,'Des nay cua sach',3.1)," +
-                "('B5','C5','Sach cua Edward','Edward',0,'Des nay cua sach',3.1)";
+                "('B1','C1','E','Edward',0,'Des nay cua sach',3.1)," +
+                "('B2','C2','Ed','Edward',0,'Des nay cua sach',3.1)," +
+                "('B3','C3','Edw','Edward',0,'Des nay cua sach',3.1)," +
+                "('B4','C4','Edwa','Edward',0,'Des nay cua sach',3.1)," +
+                "('B5','C5','Edward','Edward',0,'Des nay cua sach',3.1)";
         sqLiteDatabase.execSQL(initBook);
 
         String initBill = "INSERT INTO " + TABLE_NAME_BILL+ " VALUES" +

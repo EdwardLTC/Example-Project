@@ -91,4 +91,24 @@ public class DataAccesObject extends Database {
         }
         return list;
     }
+
+    public ArrayList<Book> getAllBook(String bookname) {
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        ArrayList<Book> list = new ArrayList<>();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME_BOOKS + " where " +KEY_BOOKS_NAME + " LIKE '?%'" , new String[]{bookname});
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                do {
+                    list.add(new Book(cursor.getString(0), cursor.getString(1), cursor.getString(2),
+                            cursor.getString(3),cursor.getInt(4),cursor.getString(5),cursor.getFloat(6)));
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.e(e.toString(), "getAllBook: ");
+            return list;
+        }
+        return list;
+    }
 }

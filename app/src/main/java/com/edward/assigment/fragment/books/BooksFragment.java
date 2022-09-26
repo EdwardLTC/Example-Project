@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +31,7 @@ import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class BooksFragment extends Fragment implements BookCallback {
     private RecyclerView rvBooks;
@@ -43,10 +46,11 @@ public class BooksFragment extends Fragment implements BookCallback {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.books_fragment, container, false);
         dataAccesObject = new DataAccesObject(requireContext());
+        initData();
         initSearch();
         initViews();
-        initData();
         setupBookAdapter();
+//        searchBar.setLastSuggestions(mdata);
         return view;
     }
 
@@ -85,6 +89,7 @@ public class BooksFragment extends Fragment implements BookCallback {
         ft.commit();
 
     }
+
     private void initSearch(){
         searchBar = view.findViewById(R.id.search);
         searchBar.setHint("Search");
@@ -97,13 +102,7 @@ public class BooksFragment extends Fragment implements BookCallback {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                ArrayList<String> suggest = new ArrayList<>();
-                for (Book results:mdata) {
-                    if (results.getTitle().contains(searchBar.getText().toLowerCase())){
-                        suggest.add(results.getTitle());
-                    }
-                }
-                searchBar.setLastSuggestions(suggest);
+                bookAdapter.getFilter().filter(charSequence.toString());
             }
 
             @Override
@@ -111,28 +110,25 @@ public class BooksFragment extends Fragment implements BookCallback {
 
             }
         });
-        searchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
-            @Override
-            public void onSearchStateChanged(boolean enabled) {
+
+//        searchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
+//            @Override
+//            public void onSearchStateChanged(boolean enabled) {
 //                if (!enabled)
-//                    rvBooks.setAdapter(bookAdapter);
-            }
-
-            @Override
-            public void onSearchConfirmed(CharSequence text) {
-                startSearch(text.toString());
-            }
-
-
-            @Override
-            public void onButtonClicked(int buttonCode) {
-
-            }
-        });
-    }
-    private void startSearch(String text) { // iniit late https://www.youtube.com/watch?v=5_jyEGe6ZHo
-        bookAdapter = new BookAdapter(mdata,this);
-        rvBooks.setAdapter(bookAdapter);
+//                    setupBookAdapter();
+//            }
+//
+//            @Override
+//            public void onSearchConfirmed(CharSequence text) {
+//                startSearch(text.toString());
+//            }
+//
+//
+//            @Override
+//            public void onButtonClicked(int buttonCode) {
+//
+//            }
+//        });
     }
 
 
