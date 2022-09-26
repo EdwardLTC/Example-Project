@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.edward.assigment.dao.DataAccesObject;
 import com.edward.assigment.fragment.books.MainBookFragment;
 import com.edward.assigment.fragment.admin.ModeratorSystemFragment;
 import com.edward.assigment.fragment.oder.OrderFragment;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
         adapter.setSelected(POS_BOOKS);
+
     }
     @Override
     public void onItemSelected(int position) {

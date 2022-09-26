@@ -1,6 +1,11 @@
 package com.edward.assigment.modal;
 
 public class Admin {
+    private String _id;
+    private String _username;
+    private String _password;
+    private int _role;
+
     public String get_id() {
         return _id;
     }
@@ -33,15 +38,20 @@ public class Admin {
         this._role = _role;
     }
 
-    private String _id;
-    private String _username;
-    private String _password;
-    private int _role;
-
     public Admin(String _id, String _username, String _password, int _role) {
         this._id = _id;
         this._username = _username;
         this._password = _password;
         this._role = _role;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "_id='" + _id + '\'' +
+                ", _username='" + _username + '\'' +
+                ", _password='" + _password + '\'' +
+                ", _role=" + _role +
+                '}';
     }
 }

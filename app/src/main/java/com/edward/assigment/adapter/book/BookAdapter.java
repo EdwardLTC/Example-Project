@@ -49,13 +49,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
         Glide.with(holder.itemView.getContext())
                 .load(mdata.get(position).getDrawableResource()) // set the img book Url
+                .placeholder(R.drawable.book1)
                 .transforms(new CenterCrop(),new RoundedCorners(16)) // i know it's deprecated i will fix it later
                 .into(holder.imgBook); // destination path
 
         holder.ratingBar.setRating(mdata.get(position).getRating());
         holder.title.setText(mdata.get(position).getTitle());
         holder.author.setText(mdata.get(position).getAuthor());
-        holder.pages.setText(String.valueOf(mdata.get(position).getPages()));
+        holder.id.setText(String.valueOf(mdata.get(position).getId()));
         holder.rate.setText(String.valueOf(mdata.get(position).getReview()));
 
     }
@@ -68,7 +69,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     public class BookViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgBook,imgContainer;
-        TextView title,author,pages,rate;
+        TextView title,author,id,rate;
         RatingBar ratingBar;
 
         public BookViewHolder(@NonNull View itemView) {
@@ -78,7 +79,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             imgContainer = itemView.findViewById(R.id.containerBook);
             title = itemView.findViewById(R.id.item_book_title);
             author = itemView.findViewById(R.id.item_book_author);
-            pages = itemView.findViewById(R.id.item_book_pagesrev);
+            id = itemView.findViewById(R.id.idbook);
             rate = itemView.findViewById(R.id.item_book_score);
             ratingBar = itemView.findViewById(R.id.item_book_ratingbar);
 
@@ -87,7 +88,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                     imgBook,
                     title,
                     author,
-                    pages,
+                    id,
                     rate,
                     ratingBar));
 

@@ -69,12 +69,12 @@ public class BookDetailsFragment extends Fragment {
         Transition transition = TransitionInflater.from(requireContext())
                 .inflateTransition(R.transition.share_image);
         setSharedElementEnterTransition(transition);
-        Glide.with(this).load(item.getDrawableResource()).into(imgBook);
+        Glide.with(this).load(item.getDrawableResource()).placeholder(R.drawable.book1).into(imgBook);
         ratingBar.setRating(item.getRating());
         title.setText(String.valueOf(item.getTitle()));
         author.setText(String.valueOf(item.getAuthor()));
         details_desc.setText(String.valueOf(item.getDescription()));
-        String txt = item.getPages() + " Pages" + " |" + item.getReview() + " review ";
+        String txt = item.getId();
         item_book_pagesrev.setText(txt);
     }
 

@@ -23,6 +23,7 @@ import com.edward.assigment.R;
 import com.edward.assigment.adapter.book.BookAdapter;
 import com.edward.assigment.adapter.book.BookCallback;
 import com.edward.assigment.adapter.CustomItemAnimator;
+import com.edward.assigment.dao.DataAccesObject;
 import com.edward.assigment.modal.Book;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
@@ -33,6 +34,7 @@ public class BooksFragment extends Fragment implements BookCallback {
     private RecyclerView rvBooks;
     private List<Book> mdata;
     private BookAdapter bookAdapter;
+    private DataAccesObject dataAccesObject;
     MaterialSearchBar searchBar ;
     View view;
 
@@ -40,7 +42,7 @@ public class BooksFragment extends Fragment implements BookCallback {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.books_fragment, container, false);
-
+        dataAccesObject = new DataAccesObject(requireContext());
         initSearch();
         initViews();
         initData();
@@ -55,12 +57,7 @@ public class BooksFragment extends Fragment implements BookCallback {
 
     private void initData() {
         mdata = new ArrayList<>();
-        mdata.add(new Book("sach cua E", "Description nay do lam ", "Edward", 200, 10, 3, R.drawable.book1));
-        mdata.add(new Book("sach cua Ed", "Description nay do lam ", "Edward", 200, 10, 3.5F, R.drawable.gatsby));
-        mdata.add(new Book("sach cua Edw", "Description nay do lam ", "Edward", 200, 10, 3.4F, R.drawable.gatsby2));
-        mdata.add(new Book("sach cua Edwa", "Description nay do lam ", "Edward", 200, 10, 1, R.drawable.thefault));
-        mdata.add(new Book("sach cua Edwar", "Description nay do lam ", "Edward", 200, 10, 3, R.drawable.themessy));
-        mdata.add(new Book("sach cua Edward", "Description nay do lam ", "Edward", 200, 10, 3, R.drawable.thefault));
+        mdata.addAll(dataAccesObject.getAllBook());
     }
 
     private void initViews() {
@@ -68,8 +65,6 @@ public class BooksFragment extends Fragment implements BookCallback {
         rvBooks.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvBooks.setHasFixedSize(true);
         rvBooks.setItemAnimator(new CustomItemAnimator());
-
-
     }
 
     @Override
@@ -78,8 +73,6 @@ public class BooksFragment extends Fragment implements BookCallback {
                                 TextView nbpages,
                                 TextView score,
                                 RatingBar ratingBar) {
-
-
         ViewCompat.setTransitionName(imgBook, "bookTN");
         Fragment fragment = new BookDetailsFragment(mdata.get(pos));
         fragment.setSharedElementEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.share_image));

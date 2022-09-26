@@ -11,7 +11,7 @@ public interface BookCallback {
                          ImageView imgBook,
                          TextView title,
                          TextView authorName,
-                         TextView nbpages,
+                         TextView id,
                          TextView score,
                          RatingBar ratingBar);
 
