@@ -61,13 +61,13 @@ public class OrderFragment extends Fragment implements OrderCallBack {
 
     @Override
     public void onOrderItemClick(int pos, TextView oderID, TextView bookID, TextView adminID,TextView userID, TextView dateCreate, TextView dateReturn, TextView status) {
-        String orderid = oderID.getText().toString();
-        String bookname = bookID.getText().toString();
-        String adminname = adminID.getText().toString();
-        String userid =userID.getText().toString();
-        String datecreate = dateCreate.getText().toString();
-        String datereturns = dateReturn.getText().toString();
+        String orderid =  mdata.get(pos).get_id();
+        String bookid = mdata.get(pos).get_bookId();
+        String adminid = mdata.get(pos).get_adminId();
+        String userid = mdata.get(pos).get_userId();
+        String datecreate = mdata.get(pos).getDateCreate();
+        String datereturns = mdata.get(pos).getDateReturn();
         int stt = Integer.parseInt(status.getText().toString());
-        Order tempOrder = new Order(orderid,bookname,adminname,userid,datecreate,datereturns,stt);
+        Order tempOrder = new Order(orderid,bookid,adminid,userid,datecreate,datereturns,stt);
     }
 }
