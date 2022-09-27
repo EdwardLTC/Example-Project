@@ -18,6 +18,7 @@ import com.edward.assigment.R;
 import com.edward.assigment.adapter.CustomItemAnimator;
 import com.edward.assigment.adapter.oder.OrderAdapter;
 import com.edward.assigment.adapter.oder.OrderCallBack;
+import com.edward.assigment.dao.DataAccesObject;
 import com.edward.assigment.modal.Order;
 
 import java.util.ArrayList;
@@ -45,10 +46,8 @@ public class OrderFragment extends Fragment implements OrderCallBack {
     }
     private void initData() {
         mdata = new ArrayList<>();
-        mdata.add(new Order("01", "b1", "ad1", "usr1", "22/12/2022", "null", 0));
-        mdata.add(new Order("02", "b2", "ad2", "usr2", "22/12/2022", "22/12/2022", 1));
-        mdata.add(new Order("03", "b3", "ad3", "usr3", "22/12/2022", "null", 0));
-        mdata.add(new Order("04", "b4", "ad4", "usr4", "22/12/2022", "22/12/2022", 1));
+        DataAccesObject dataAccesObject = new DataAccesObject(requireContext());
+        mdata = dataAccesObject.getOrder();
     }
 
     private void initView() {

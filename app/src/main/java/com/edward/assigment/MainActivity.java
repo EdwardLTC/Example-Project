@@ -139,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     private void showFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
-                .addToBackStack(null)
                 .commit();
     }
 

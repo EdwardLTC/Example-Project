@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import com.edward.assigment.helper.Database;
 import com.edward.assigment.modal.Admin;
 import com.edward.assigment.modal.Book;
+import com.edward.assigment.modal.Order;
 
 import java.util.ArrayList;
 
@@ -87,29 +88,45 @@ public class DataAccesObject extends Database {
             cursor.close();
         } catch (Exception e) {
             Log.e(e.toString(), "getAllBook: ");
-            return list;
         }
         return list;
     }
 
-    public ArrayList<Book> getAllBook(String bookname) {
+    public ArrayList<Order> getOrder() {
         SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
-        ArrayList<Book> list = new ArrayList<>();
+        ArrayList<Order> list = new ArrayList<>();
         try {
-            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME_BOOKS + " where " +KEY_BOOKS_NAME + " LIKE '?%'" , new String[]{bookname});
+            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME_BILL , null);
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
                 do {
-                    list.add(new Book(cursor.getString(0), cursor.getString(1), cursor.getString(2),
-                            cursor.getString(3),cursor.getInt(4),cursor.getString(5),cursor.getFloat(6)));
+                    list.add(new Order(cursor.getString(0),cursor.getString(1),
+                            cursor.getString(2),cursor.getString(3),cursor.getString(4),
+                            cursor.getString(5),cursor.getInt(6)));
                 } while (cursor.moveToNext());
             }
             cursor.close();
         } catch (Exception e) {
-            Log.e(e.toString(), "getAllBook: ");
-            return list;
+            Log.e(e.toString(), "getAllOrder: ");
         }
         return list;
     }
 
+    public ArrayList<Admin> getAllAdmin(int role){
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        ArrayList<Admin> list = new ArrayList<>();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME_ADMIN + " where " +KEY_ADMIN_ROLE + "=?", new String[]{String.valueOf(role)});
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                do {
+                    list.add(new Admin(cursor.getString(0),cursor.getString(1),null,cursor.getInt(3)));
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        } catch (Exception e) {
+           System.out.println(e);
+        }
+        return list;
+    }
 }

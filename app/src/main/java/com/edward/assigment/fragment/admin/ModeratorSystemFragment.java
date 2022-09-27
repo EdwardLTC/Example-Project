@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.edward.assigment.R;
 import com.edward.assigment.adapter.admin.AdminAdapter;
 import com.edward.assigment.adapter.admin.AdminCallBack;
+import com.edward.assigment.dao.DataAccesObject;
 import com.edward.assigment.modal.Admin;
 
 import java.util.ArrayList;
@@ -47,10 +48,8 @@ public class ModeratorSystemFragment extends Fragment implements AdminCallBack {
 
     private void initData() {
         mdata = new ArrayList<>();
-        mdata.add(new Admin("1", "Edward", "new Pass", 1));
-        mdata.add(new Admin("2", "Edward", "new Pass", 1));
-        mdata.add(new Admin("3", "Edward", "new Pass", 1));
-        mdata.add(new Admin("4", "Edward", "new Pass", 1));
+        DataAccesObject dataAccesObject = new DataAccesObject(requireContext());
+        mdata = dataAccesObject.getAllAdmin(1);
     }
 
     private void initViews() {
