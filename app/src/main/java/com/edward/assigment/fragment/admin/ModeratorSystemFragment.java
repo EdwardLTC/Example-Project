@@ -61,7 +61,7 @@ public class ModeratorSystemFragment extends Fragment implements AdminCallBack {
 
     private void initFab() {
         NeumorphFloatingActionButton fab = view.findViewById(R.id.fab);
-        fab.setOnClickListener(view -> requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new AddModFragment()).commit());
+        fab.setOnClickListener(view -> requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new AddModFragment()).addToBackStack(null).commit());
     }
 
     @Override
