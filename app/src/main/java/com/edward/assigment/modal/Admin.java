@@ -1,6 +1,8 @@
 package com.edward.assigment.modal;
 
-public class Admin {
+import java.io.Serializable;
+
+public class Admin implements Serializable {
     private String _id;
     private String _username;
     private String _password;
@@ -37,6 +39,8 @@ public class Admin {
     public void set_role(int _role) {
         this._role = _role;
     }
+
+    public Admin(){}
 
     public Admin(String _id, String _username, String _password, int _role) {
         this._id = _id;

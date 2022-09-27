@@ -82,7 +82,7 @@ public class DataAccesObject extends Database {
                 cursor.moveToFirst();
                 do {
                     list.add(new Book(cursor.getString(0), cursor.getString(1), cursor.getString(2),
-                            cursor.getString(3),cursor.getInt(4),cursor.getString(5),cursor.getFloat(6)));
+                            cursor.getString(3), cursor.getInt(4), cursor.getString(5), cursor.getFloat(6)));
                 } while (cursor.moveToNext());
             }
             cursor.close();
@@ -96,13 +96,13 @@ public class DataAccesObject extends Database {
         SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
         ArrayList<Order> list = new ArrayList<>();
         try {
-            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME_BILL , null);
+            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME_BILL, null);
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
                 do {
-                    list.add(new Order(cursor.getString(0),cursor.getString(1),
-                            cursor.getString(2),cursor.getString(3),cursor.getString(4),
-                            cursor.getString(5),cursor.getInt(6)));
+                    list.add(new Order(cursor.getString(0), cursor.getString(1),
+                            cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                            cursor.getString(5), cursor.getInt(6)));
                 } while (cursor.moveToNext());
             }
             cursor.close();
@@ -112,21 +112,39 @@ public class DataAccesObject extends Database {
         return list;
     }
 
-    public ArrayList<Admin> getAllAdmin(int role){
+    public ArrayList<Admin> getAllAdmin(int role) {
         SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
         ArrayList<Admin> list = new ArrayList<>();
         try {
-            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME_ADMIN + " where " +KEY_ADMIN_ROLE + "=?", new String[]{String.valueOf(role)});
+            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_ROLE + "=?", new String[]{String.valueOf(role)});
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
                 do {
-                    list.add(new Admin(cursor.getString(0),cursor.getString(1),null,cursor.getInt(3)));
+                    list.add(new Admin(cursor.getString(0), cursor.getString(1), null, cursor.getInt(3)));
                 } while (cursor.moveToNext());
             }
             cursor.close();
         } catch (Exception e) {
-           System.out.println(e);
+            System.out.println(e);
         }
         return list;
+    }
+
+    public Admin HandleLoginForAdmin(String userName, String passWord) {
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        Admin admin = null;
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(
+                    "select * from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_ID + "= '"+ userName+ "' AND " + KEY_ADMIN_PASSWORD + "='" +passWord +"'", null);
+
+            cursor.moveToFirst();
+            if (cursor.getCount() != 0) {
+                admin = new Admin(cursor.getString(0), cursor.getString(1), null, cursor.getInt(3));
+            }
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return admin;
     }
 }
