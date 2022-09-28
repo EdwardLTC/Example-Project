@@ -125,7 +125,7 @@ public class DataAccesObject extends Database {
             }
             cursor.close();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         return list;
     }
@@ -135,7 +135,7 @@ public class DataAccesObject extends Database {
         Admin admin = null;
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(
-                    "select * from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_ID + "= '"+ userName+ "' AND " + KEY_ADMIN_PASSWORD + "='" +passWord +"'", null);
+                    "select * from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_ID + "= '" + userName + "' AND " + KEY_ADMIN_PASSWORD + "='" + passWord + "'", null);
 
             cursor.moveToFirst();
             if (cursor.getCount() != 0) {
