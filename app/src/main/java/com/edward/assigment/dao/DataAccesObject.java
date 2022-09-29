@@ -1,14 +1,15 @@
 package com.edward.assigment.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import com.edward.assigment.helper.Database;
 import com.edward.assigment.modal.Admin;
 import com.edward.assigment.modal.Book;
+import com.edward.assigment.modal.Category;
 import com.edward.assigment.modal.Order;
 
 import java.util.ArrayList;
@@ -146,5 +147,115 @@ public class DataAccesObject extends Database {
             e.printStackTrace();
         }
         return admin;
+    }
+
+    public boolean handleAddBook(Book book) {
+        long result = -1;
+        SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_BOOKS_ID, book.getId());
+        contentValues.put(KEY_BOOKS_NAME, book.getTitle());
+        contentValues.put(KEY_BOOKS_AUTHOR, book.getAuthor());
+        contentValues.put(KEY_CATEGORY_ID, book.getIdCategory());
+        contentValues.put(KEY_BOOKS_DESCRIPTION, book.getDescription());
+        try {
+            result = sqLiteDatabase.insert(TABLE_NAME_BOOKS, null, contentValues);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result != -1;
+    }
+
+    public ArrayList<String> getAllCategoryName() {
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery("select " + KEY_CATEGORY_NAME + " from " + TABLE_NAME_CATEGORY, null);
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                do {
+                    list.add(cursor.getString(0));
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public String getCategoryFromName(String name) {
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        String id = null;
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery("select " + KEY_CATEGORY_ID + " from " + TABLE_NAME_CATEGORY + " where " + KEY_CATEGORY_NAME + "=?", new String[]{name});
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                id = cursor.getString(0);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public boolean handleRemoveBook(String id) {
+        long result = -1;
+        SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
+        try {
+            result = sqLiteDatabase.delete(TABLE_NAME_BOOKS, KEY_BOOKS_ID + "=?", new String[]{id});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result != -1;
+    }
+
+    public boolean handleUpdateBook(String id, String name, String author, String des) {
+        long result = -1;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_BOOKS_NAME, name);
+        contentValues.put(KEY_BOOKS_AUTHOR, author);
+        contentValues.put(KEY_BOOKS_DESCRIPTION, des);
+        SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
+        try {
+            result = sqLiteDatabase.update(TABLE_NAME_BOOKS, contentValues, KEY_BOOKS_ID + "=?", new String[]{id});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result != -1;
+    }
+
+    public boolean handleAddCategory(Category category){
+        long result = -1;
+        SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_CATEGORY_ID, category.get_id());
+        contentValues.put(KEY_CATEGORY_NAME,category.get_name());
+        try {
+            result = sqLiteDatabase.insert(TABLE_NAME_CATEGORY, null, contentValues);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result != -1;
+    }
+
+    public boolean hanldeAddMod(Admin admin){
+        long result = -1;
+        SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_ADMIN_ID, admin.get_id());
+        contentValues.put(KEY_ADMIN_USERNAME, admin.get_username());
+        contentValues.put(KEY_ADMIN_PASSWORD, admin.get_password());
+        contentValues.put(KEY_ADMIN_ROLE, admin.get_role());
+        try {
+            result = sqLiteDatabase.insert(TABLE_NAME_ADMIN, null, contentValues);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result != -1;
     }
 }

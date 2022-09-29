@@ -23,13 +23,16 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.edward.assigment.MainActivity;
 import com.edward.assigment.R;
+import com.edward.assigment.dao.DataAccesObject;
 import com.edward.assigment.modal.Book;
 import com.taufiqrahman.reviewratings.BarLabels;
 import com.taufiqrahman.reviewratings.RatingReviews;
 
 import java.util.Random;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import soup.neumorphism.NeumorphButton;
 
 public class BookDetailsFragment extends Fragment {
@@ -37,9 +40,10 @@ public class BookDetailsFragment extends Fragment {
     ImageView imgBook;
     TextView item_book_pagesrev;
     EditText title, author, details_desc;
-    NeumorphButton btnEdit;
+    NeumorphButton btnEdit, btnDel;
     View view;
     Book item;
+    DataAccesObject dataAccesObject;
 
     public BookDetailsFragment(Book item) {
         this.item = item;
@@ -49,21 +53,40 @@ public class BookDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.book_details_fragment, container, false);
+        initView();
+        loadBookData();
+        initEdit();
+        initGarph();
+        imgBook.setOnClickListener(view -> requireActivity().onBackPressed());
+        btnDel.setOnClickListener(view -> createDialogRemove());
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createDialogEdit();
+            }
+        });
+
+        return view;
+    }
+
+    private void reInitBookData(){
+        item.setTitle(title.getText().toString());
+        item.setAuthor(author.getText().toString());
+        item.setDescription(details_desc.getText().toString());
+    }
+
+    private void initView() {
         imgBook = view.findViewById(R.id.item_book_img);
         ViewCompat.setTransitionName(imgBook, "bookTN");
+        dataAccesObject = new DataAccesObject(requireContext());
         ratingBar = view.findViewById(R.id.item_book_ratingbar);
         title = view.findViewById(R.id.item_book_title);
         author = view.findViewById(R.id.item_book_author);
         details_desc = view.findViewById(R.id.details_desc);
         item_book_pagesrev = view.findViewById(R.id.item_book_pagesrev);
         btnEdit = view.findViewById(R.id.edit);
-        loadBookData();
-        initEdit();
-        imgBook.setOnClickListener(view -> requireActivity().onBackPressed());
-        initGarph();
-        return view;
+        btnDel = view.findViewById(R.id.del);
     }
-
 
     private void loadBookData() {
         Transition transition = TransitionInflater.from(requireContext())
@@ -157,5 +180,53 @@ public class BookDetailsFragment extends Fragment {
         };
 
         ratingReviews.createRatingBars(100, BarLabels.STYPE1, colors, raters);
+    }
+
+    private void createDialogRemove() {
+        new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Are you sure?")
+                .setContentText("Won't be able to recover this book!")
+                .setConfirmText("Yes,delete it!")
+                .setConfirmClickListener(sDialog -> {
+                    if (dataAccesObject.handleRemoveBook(item.getId())) {
+                        sDialog.setTitleText("Deleted!")
+                                .setContentText("Your book  has been deleted!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(null)
+                                .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        requireActivity().onBackPressed();
+                    } else {
+                        sDialog.setTitleText("Oops...")
+                                .setContentText("Something went wrong!")
+                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                    }
+
+                })
+                .show();
+
+    }
+
+    private void createDialogEdit(){
+        new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Are you sure to Edit this book?")
+                .setContentText("Won't be able to recover this book!")
+                .setConfirmText("Yes,im sure ! ")
+                .setConfirmClickListener(sDialog -> {
+                    if (dataAccesObject.handleUpdateBook(item.getId(),title.getText().toString(),author.getText().toString(),details_desc.getText().toString())) {
+                        sDialog.setTitleText("Update!")
+                                .setContentText("Your book has been Update!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(null)
+                                .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        reInitBookData();
+                        btnEdit.setEnabled(false);
+                    } else {
+                        sDialog.setTitleText("Oops...")
+                                .setContentText("Something went wrong!")
+                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                    }
+
+                })
+                .show();
     }
 }

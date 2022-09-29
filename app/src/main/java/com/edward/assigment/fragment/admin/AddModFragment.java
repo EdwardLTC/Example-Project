@@ -38,6 +38,7 @@ public class AddModFragment extends Fragment {
         imageView = view.findViewById(R.id.togglePass);
     }
 
+    @SuppressLint({"NonConstantResourceId", "UseCompatLoadingForDrawables"})
     private void initToggleButton() {
 
         imageView.setOnClickListener(view -> {

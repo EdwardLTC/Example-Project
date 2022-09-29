@@ -65,11 +65,7 @@ public class ModDetailsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!name.getText().toString().equals(mod.get_username())) {
-                    btnEdit.setEnabled(true);
-                } else {
-                    btnEdit.setEnabled(false);
-                }
+                btnEdit.setEnabled(!name.getText().toString().equals(mod.get_username()));
             }
 
             @Override
