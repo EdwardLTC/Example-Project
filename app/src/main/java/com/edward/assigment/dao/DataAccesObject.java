@@ -227,12 +227,12 @@ public class DataAccesObject extends Database {
         return result != -1;
     }
 
-    public boolean handleAddCategory(Category category){
+    public boolean handleAddCategory(Category category) {
         long result = -1;
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_CATEGORY_ID, category.get_id());
-        contentValues.put(KEY_CATEGORY_NAME,category.get_name());
+        contentValues.put(KEY_CATEGORY_NAME, category.get_name());
         try {
             result = sqLiteDatabase.insert(TABLE_NAME_CATEGORY, null, contentValues);
 
@@ -242,7 +242,7 @@ public class DataAccesObject extends Database {
         return result != -1;
     }
 
-    public boolean hanldeAddMod(Admin admin){
+    public boolean handleAddMod(Admin admin) {
         long result = -1;
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -252,6 +252,80 @@ public class DataAccesObject extends Database {
         contentValues.put(KEY_ADMIN_ROLE, admin.get_role());
         try {
             result = sqLiteDatabase.insert(TABLE_NAME_ADMIN, null, contentValues);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result != -1;
+    }
+
+    public boolean handleRemoveMod(String id) {
+        long result = -1;
+        SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
+        try {
+            result = sqLiteDatabase.delete(TABLE_NAME_ADMIN, KEY_ADMIN_ID + "=?", new String[]{id});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result != -1;
+    }
+
+    public String GetBookFromId(String id) {
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        String name = null;
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery("select " + KEY_BOOKS_NAME + " from " + TABLE_NAME_BOOKS + " where " + KEY_BOOKS_ID + "=?", new String[]{id});
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                name = cursor.getString(0);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    public String GetNameAdminFromId(String id) {
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        String name = null;
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery("select " + KEY_ADMIN_USERNAME + " from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_ID + "=?", new String[]{id});
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                name = cursor.getString(0);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    public String GetUserNameFromId(String id) {
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        String name = null;
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery("select " + KEY_USER_name + " from " + TABLE_NAME_USER + " where " + KEY_USER_ID + "=?", new String[]{id});
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                name = cursor.getString(0);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    public boolean handleMarkDoneOrder(String id, String date){
+        long result = -1;
+        SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+       contentValues.put(KEY_BILL_DATERETURN,date);
+       contentValues.put(KEY_BILL_checked,1);
+        try {
+            result = sqLiteDatabase.update(TABLE_NAME_BILL, contentValues,KEY_BILL_ID+"=?", new String[]{id});
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -3,6 +3,7 @@ package com.edward.assigment.fragment.oder;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.edward.assigment.R;
+import com.edward.assigment.dao.DataAccesObject;
 import com.edward.assigment.modal.Order;
 
 
@@ -25,6 +27,7 @@ public class OrderDetailsFragment extends Fragment {
     NeumorphCardView neumorphCardView;
     Order order;
     NeumorphButton btnMark;
+    DataAccesObject dataAccesObject;
 
     public OrderDetailsFragment(Order order) {
         this.order = order;
@@ -34,6 +37,7 @@ public class OrderDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.order_details_fragment, container, false);
+        dataAccesObject = new DataAccesObject(requireContext());
         initView();
         fillView();
         return view;
@@ -54,9 +58,9 @@ public class OrderDetailsFragment extends Fragment {
 
     private void fillView() {
         oderID.setText(order.get_id());
-        bookID.setText(order.get_bookId()); //raw query get name
-        AdminID.setText(order.get_adminId()); //raw query get name
-        userId.setText(order.get_userId());//raw query get name
+        bookID.setText(dataAccesObject.GetBookFromId(order.get_bookId()));
+        AdminID.setText(dataAccesObject.GetNameAdminFromId(order.get_adminId()));
+        userId.setText(dataAccesObject.GetUserNameFromId(order.get_userId()));
         DateCreate.setText(order.getDateCreate());
         DateReturn.setText(order.getDateReturn());
         String str = order.get_status() == 0 ? "not done" : "done";
@@ -69,4 +73,5 @@ public class OrderDetailsFragment extends Fragment {
             btnMark.setEnabled(false);
         }
     }
+
 }

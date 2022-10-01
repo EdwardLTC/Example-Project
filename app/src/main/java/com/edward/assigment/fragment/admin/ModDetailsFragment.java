@@ -14,16 +14,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.edward.assigment.R;
+import com.edward.assigment.dao.DataAccesObject;
 import com.edward.assigment.modal.Admin;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import soup.neumorphism.NeumorphButton;
 
 public class ModDetailsFragment extends Fragment {
     Admin mod;
     EditText name, des;
     TextView role,id;
-    NeumorphButton btnEdit;
+    NeumorphButton btnEdit,btnDel;
     View view;
+    DataAccesObject dataAccesObject;
 
     public ModDetailsFragment(Admin mod) {
         this.mod = mod;
@@ -34,9 +37,11 @@ public class ModDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.mod_details_fragment, container, false);
+        dataAccesObject = new DataAccesObject(requireContext());
         initView();
         initData();
         editBtn();
+        delBtn();
         return view;
     }
 
@@ -46,6 +51,7 @@ public class ModDetailsFragment extends Fragment {
         role = view.findViewById(R.id.roleAdmin);
         des = view.findViewById(R.id.modDes);
         btnEdit = view.findViewById(R.id.edit);
+        btnDel = view.findViewById(R.id.del);
     }
 
     private void initData() {
@@ -74,5 +80,28 @@ public class ModDetailsFragment extends Fragment {
             }
         });
 
+    }
+
+    private void delBtn(){
+        btnDel.setOnClickListener(view -> new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Are you sure?")
+                .setContentText("Won't be able to recover this Moderator!")
+                .setConfirmText("Yes,delete it!")
+                .setConfirmClickListener(sDialog -> {
+                    if (dataAccesObject.handleRemoveMod(mod.get_id())) {
+                        sDialog.setTitleText("Deleted!")
+                                .setContentText("Your Moderator has been deleted!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(null)
+                                .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        requireActivity().onBackPressed();
+                    } else {
+                        sDialog.setTitleText("Oops...")
+                                .setContentText("Something went wrong!")
+                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                    }
+
+                })
+                .show());
     }
 }

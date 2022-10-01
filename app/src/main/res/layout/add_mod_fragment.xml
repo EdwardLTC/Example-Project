@@ -119,6 +119,7 @@
         </soup.neumorphism.NeumorphCardView>
 
         <soup.neumorphism.NeumorphButton
+            app:neumorph_shapeType="flat"
             android:id="@+id/submit"
             style="@style/Widget.Neumorph.Button"
             android:layout_width="200dp"

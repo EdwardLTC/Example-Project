@@ -1,6 +1,7 @@
 package com.edward.assigment.fragment.books;
 
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +21,12 @@ import com.edward.assigment.adapter.SpinnerAdapter;
 import com.edward.assigment.dao.DataAccesObject;
 import com.edward.assigment.modal.Book;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import soup.neumorphism.NeumorphButton;
@@ -54,6 +60,13 @@ public class AddBookFragment extends Fragment {
         });
 
         btn.setOnClickListener(view -> {
+            AsyncTask.execute(new Runnable() {
+                @Override
+                public void run() {
+                    // All your networking logic
+                    // should be here
+                }
+            });
             Book book = new Book(bookid.getText().toString(),
                     dataAccesObject.getCategoryFromName(cate.getSelectedItem().toString()),
                     bookname.getText().toString(), bookauthor.getText().toString(), R.drawable.book1,
