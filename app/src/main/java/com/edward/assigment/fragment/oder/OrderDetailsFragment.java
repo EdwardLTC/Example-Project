@@ -1,5 +1,6 @@
 package com.edward.assigment.fragment.oder;
 
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,9 +17,14 @@ import androidx.fragment.app.Fragment;
 
 import com.edward.assigment.R;
 import com.edward.assigment.dao.DataAccesObject;
+import com.edward.assigment.modal.Admin;
 import com.edward.assigment.modal.Order;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import soup.neumorphism.NeumorphButton;
 import soup.neumorphism.NeumorphCardView;
 
@@ -40,6 +47,7 @@ public class OrderDetailsFragment extends Fragment {
         dataAccesObject = new DataAccesObject(requireContext());
         initView();
         fillView();
+        markClick();
         return view;
     }
 
@@ -72,6 +80,37 @@ public class OrderDetailsFragment extends Fragment {
             neumorphCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#b8f9be")));
             btnMark.setEnabled(false);
         }
+    }
+
+    private void markClick() {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        btnMark.setOnClickListener(view -> new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Mark done Action")
+                .setContentText("U wanna mark  " + order.get_id() + " done ?")
+                .setConfirmText("Yes,do it!")
+                .setConfirmClickListener(sDialog -> {
+                    if (dataAccesObject.handleMarkDoneOrder(order.get_id(), formatter.format(date))) {
+                        sDialog.setTitleText("has been Add!")
+                                .setContentText("Your Moderator has been Add!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(null)
+                                .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        order.set_status(1);
+                        order.setDateReturn(formatter.format(date));
+                        fillView();
+                        fillView();
+
+                    } else {
+                        sDialog.setTitleText("Oops...")
+                                .setContentText("Something went wrong!")
+                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                    }
+
+                })
+                .show());
+
     }
 
 }

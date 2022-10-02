@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
     SharedPreferences shp;
     SharedPreferences.Editor shpEditor;
 
+    Admin admin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        Admin admin = (Admin) getIntent().getSerializableExtra("Object");
+        admin = (Admin) getIntent().getSerializableExtra("Object");
         ROLE = admin.get_role();
 
 
@@ -142,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnI
                 slidingRootNav.closeMenu();
                 break;
             case POS_ORDER:
-                fragment = new OrderFragment();
+                fragment = new OrderFragment(admin.get_id());
                 showFragment(fragment);
                 slidingRootNav.closeMenu();
                 break;

@@ -2,7 +2,6 @@ package com.edward.assigment.fragment.oder;
 
 import android.os.Bundle;
 import android.transition.TransitionInflater;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +24,19 @@ import com.edward.assigment.modal.Order;
 import java.util.ArrayList;
 import java.util.List;
 
+import soup.neumorphism.NeumorphFloatingActionButton;
+
 public class OrderFragment extends Fragment implements OrderCallBack {
     private RecyclerView rvOrders;
     private List<Order> mdata;
     private OrderAdapter orderAdapter;
+    NeumorphFloatingActionButton fab;
     View view;
+    String modID;
+
+    public OrderFragment(String id) {
+        modID = id;
+    }
 
     @Nullable
     @Override
@@ -38,6 +45,7 @@ public class OrderFragment extends Fragment implements OrderCallBack {
         initView();
         initData();
         setupOrderAdapter();
+        fabOnclick();
         return view;
     }
 
@@ -52,6 +60,7 @@ public class OrderFragment extends Fragment implements OrderCallBack {
     }
 
     private void initView() {
+        fab = view.findViewById(R.id.fab);
         rvOrders = view.findViewById(R.id.rvOrders);
         rvOrders.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvOrders.setHasFixedSize(true);
@@ -79,5 +88,16 @@ public class OrderFragment extends Fragment implements OrderCallBack {
         ft.commit();
     }
 
+    private void fabOnclick(){
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new AddOrderFragment(modID);
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, fragment)
+                        .addToBackStack(null).commit();
+            }
+        });
+    }
 
 }

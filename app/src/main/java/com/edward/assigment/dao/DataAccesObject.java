@@ -318,14 +318,68 @@ public class DataAccesObject extends Database {
         return name;
     }
 
-    public boolean handleMarkDoneOrder(String id, String date){
+    public String GetIdBookFromName(String name){
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        String id = null;
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery("select " + KEY_BOOKS_ID + " from " + TABLE_NAME_BOOKS + " where " + KEY_BOOKS_NAME + "=?", new String[]{name});
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                id = cursor.getString(0);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public boolean handleMarkDoneOrder(String id, String date) {
         long result = -1;
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-       contentValues.put(KEY_BILL_DATERETURN,date);
-       contentValues.put(KEY_BILL_checked,1);
+        contentValues.put(KEY_BILL_DATERETURN, date);
+        contentValues.put(KEY_BILL_checked, 1);
         try {
-            result = sqLiteDatabase.update(TABLE_NAME_BILL, contentValues,KEY_BILL_ID+"=?", new String[]{id});
+            result = sqLiteDatabase.update(TABLE_NAME_BILL, contentValues, KEY_BILL_ID + "=?", new String[]{id});
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result != -1;
+    }
+
+    public ArrayList<String> getAllBookName() {
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery("select "+ KEY_BOOKS_NAME+" from " + TABLE_NAME_BOOKS, null);
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                do {
+                    list.add(cursor.getString(0));
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.e(e.toString(), "getAllBook: ");
+        }
+        return list;
+    }
+
+    public boolean handleAddOrder(Order order){
+        long result = -1;
+        SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_BILL_ID,order.get_id());
+        contentValues.put(KEY_BOOKS_ID,order.get_bookId());
+        contentValues.put(KEY_ADMIN_ID,order.get_adminId());
+        contentValues.put(KEY_USER_ID,order.get_userId());
+        contentValues.put(KEY_BILL_DATECREATE,order.getDateCreate());
+        contentValues.put(KEY_BILL_DATERETURN,order.getDateReturn());
+        contentValues.put(KEY_BILL_checked,order.get_status());
+        try {
+            result = sqLiteDatabase.insert(TABLE_NAME_BILL, null, contentValues);
 
         } catch (Exception e) {
             e.printStackTrace();

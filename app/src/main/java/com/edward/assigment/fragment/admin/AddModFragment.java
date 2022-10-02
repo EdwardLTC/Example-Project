@@ -30,6 +30,7 @@ public class AddModFragment extends Fragment {
     View view;
     NeumorphButton submit;
     DataAccesObject dataAccesObject;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class AddModFragment extends Fragment {
         return view;
     }
 
-    private void initView() {   
+    private void initView() {
         name = view.findViewById(R.id.modname);
         id = view.findViewById(R.id.modid);
         pass = view.findViewById(R.id.modPass);
@@ -120,13 +121,13 @@ public class AddModFragment extends Fragment {
 //        });
     }
 
-    private void addMod(){
+    private void addMod() {
         submit.setOnClickListener(view -> new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
                 .setTitleText("Add Action")
                 .setContentText("U wanna add " + id.getText().toString() + "?")
                 .setConfirmText("Yes,do it!")
                 .setConfirmClickListener(sDialog -> {
-                    if (dataAccesObject.handleAddMod(new Admin(id.getText().toString(),name.getText().toString(),pass.getText().toString(),1))) {
+                    if (dataAccesObject.handleAddMod(new Admin(id.getText().toString(), name.getText().toString(), pass.getText().toString(), 1))) {
                         sDialog.setTitleText("has been Add!")
                                 .setContentText("Your Moderator has been Add!")
                                 .setConfirmText("OK")
@@ -137,6 +138,8 @@ public class AddModFragment extends Fragment {
                     } else {
                         sDialog.setTitleText("Oops...")
                                 .setContentText("Something went wrong!")
+                                .setConfirmText("oke")
+                                .setConfirmClickListener(null)
                                 .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                     }
 
@@ -144,7 +147,7 @@ public class AddModFragment extends Fragment {
                 .show());
     }
 
-    private void  reInitView(){
+    private void reInitView() {
         id.setText("");
         pass.setText("");
         name.setText("");
