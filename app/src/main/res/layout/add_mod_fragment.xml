@@ -62,30 +62,6 @@
             android:layout_marginEnd="10dp"
             app:neumorph_shapeType="pressed">
 
-            <EditText
-                android:id="@+id/modid"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints=""
-                android:background="@null"
-                android:gravity="center"
-                android:hint="Mod ID"
-                android:padding="14dp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_color"
-                tools:ignore="RtlSymmetry" />
-        </soup.neumorphism.NeumorphCardView>
-
-        <soup.neumorphism.NeumorphCardView
-            style="@style/Widget.Neumorph.CardView"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            app:neumorph_shapeType="pressed">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -114,6 +90,39 @@
                     android:layout_height="24dp"
                     android:layout_gravity="center"
                     android:src="@drawable/invisible_eye" />
+            </LinearLayout>
+
+        </soup.neumorphism.NeumorphCardView>
+        <soup.neumorphism.NeumorphCardView
+            style="@style/Widget.Neumorph.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:neumorph_shapeType="pressed">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <EditText
+                    android:id="@+id/modPassConfirm"
+                    android:layout_width="326dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:autofillHints=""
+                    android:background="@null"
+                    android:gravity="center"
+                    android:hint=" Confirm Password"
+                    android:inputType="textPassword"
+                    android:padding="14dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_color" />
+
             </LinearLayout>
 
         </soup.neumorphism.NeumorphCardView>

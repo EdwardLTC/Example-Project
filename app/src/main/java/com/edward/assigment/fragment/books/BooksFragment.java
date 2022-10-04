@@ -50,8 +50,12 @@ public class BooksFragment extends Fragment implements BookCallback {
         initSearch();
         initViews();
         setupBookAdapter();
-//        searchBar.setLastSuggestions(mdata);
         return view;
+    }
+    @Override
+    public void onResume() {
+        setupBookAdapter();
+        super.onResume();
     }
 
     private void setupBookAdapter() {

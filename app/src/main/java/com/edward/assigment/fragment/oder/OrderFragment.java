@@ -32,9 +32,9 @@ public class OrderFragment extends Fragment implements OrderCallBack {
     private OrderAdapter orderAdapter;
     NeumorphFloatingActionButton fab;
     View view;
-    String modID;
+    int modID;
 
-    public OrderFragment(String id) {
+    public OrderFragment(int id) {
         modID = id;
     }
 
@@ -69,9 +69,9 @@ public class OrderFragment extends Fragment implements OrderCallBack {
 
     @Override
     public void onOrderItemClick(int pos, TextView oderID, TextView bookID, TextView adminID,TextView userID, TextView dateCreate, TextView dateReturn, TextView status) {
-        String orderid =  mdata.get(pos).get_id();
-        String bookid = mdata.get(pos).get_bookId();
-        String adminid = mdata.get(pos).get_adminId();
+        int orderid =  mdata.get(pos).get_id();
+        int bookid = mdata.get(pos).get_bookId();
+        int adminid = mdata.get(pos).get_adminId();
         String userid = mdata.get(pos).get_userId();
         String datecreate = mdata.get(pos).getDateCreate();
         String datereturns = mdata.get(pos).getDateReturn();

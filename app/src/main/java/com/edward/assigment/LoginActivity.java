@@ -32,10 +32,9 @@ public class LoginActivity extends AppCompatActivity {
         CheckLogin();
         findViewById(R.id.login).setOnClickListener(view -> DoLogin(user.getText().toString(),pass.getText().toString()));
     }
-
     public void DoLogin(String username, String pass) {
         try {
-            Admin admin = dataAccesObject.HandleLoginForAdmin(username, pass);
+            Admin admin = dataAccesObject.HandleLoginForAdmin(Integer.parseInt(username), pass);
             if (admin == null) {
                 Toast.makeText(LoginActivity.this, "Error Login", Toast.LENGTH_SHORT).show();
             } else {

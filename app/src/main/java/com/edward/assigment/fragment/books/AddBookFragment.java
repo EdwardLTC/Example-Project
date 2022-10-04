@@ -60,18 +60,9 @@ public class AddBookFragment extends Fragment {
         });
 
         btn.setOnClickListener(view -> {
-            AsyncTask.execute(new Runnable() {
-                @Override
-                public void run() {
-                    // All your networking logic
-                    // should be here
-                }
-            });
-            Book book = new Book(bookid.getText().toString(),
-                    dataAccesObject.getCategoryFromName(cate.getSelectedItem().toString()),
+            Book book = new Book(dataAccesObject.getCategoryFromName(cate.getSelectedItem().toString()),
                     bookname.getText().toString(), bookauthor.getText().toString(), R.drawable.book1,
                     des.getText().toString(), 3.2F);
-
             if (dataAccesObject.handleAddBook(book)) {
                 new SweetAlertDialog(requireContext(), SweetAlertDialog.SUCCESS_TYPE)
                         .setTitleText("Good job!")
@@ -91,7 +82,6 @@ public class AddBookFragment extends Fragment {
 
     private void initView() {
         btn = view.findViewById(R.id.submit);
-        bookid = view.findViewById(R.id.bookid);
         bookname = view.findViewById(R.id.bookname);
         bookauthor = view.findViewById(R.id.author);
         cate = view.findViewById(R.id.spinner);
@@ -112,7 +102,6 @@ public class AddBookFragment extends Fragment {
     }
 
     private void reInitEdit() {
-        bookid.setText("");
         bookname.setText("");
         initSpinner();
         bookauthor.setText("");

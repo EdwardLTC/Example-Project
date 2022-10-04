@@ -26,7 +26,7 @@ import soup.neumorphism.NeumorphButton;
 
 public class AddModFragment extends Fragment {
     ImageView imageView;
-    TextView name, id, pass;
+    TextView name, cp, pass;
     View view;
     NeumorphButton submit;
     DataAccesObject dataAccesObject;
@@ -44,7 +44,7 @@ public class AddModFragment extends Fragment {
 
     private void initView() {
         name = view.findViewById(R.id.modname);
-        id = view.findViewById(R.id.modid);
+        cp = view.findViewById(R.id.modPassConfirm);
         pass = view.findViewById(R.id.modPass);
         imageView = view.findViewById(R.id.togglePass);
         submit = view.findViewById(R.id.submit);
@@ -122,33 +122,50 @@ public class AddModFragment extends Fragment {
     }
 
     private void addMod() {
-        submit.setOnClickListener(view -> new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
-                .setTitleText("Add Action")
-                .setContentText("U wanna add " + id.getText().toString() + "?")
-                .setConfirmText("Yes,do it!")
-                .setConfirmClickListener(sDialog -> {
-                    if (dataAccesObject.handleAddMod(new Admin(id.getText().toString(), name.getText().toString(), pass.getText().toString(), 1))) {
-                        sDialog.setTitleText("has been Add!")
-                                .setContentText("Your Moderator has been Add!")
-                                .setConfirmText("OK")
-                                .setConfirmClickListener(null)
-                                .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                        reInitView();
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!cp.getText().toString().equals(pass.getText().toString())) {
+                    new SweetAlertDialog(requireContext(), SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Oops...")
+                            .setContentText("the Password is not match")
+                            .setTitleText("oke").show();
+                } else if (name.getText().toString().isEmpty()) {
+                    new SweetAlertDialog(requireContext(), SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Oops...")
+                            .setContentText("the name still empty")
+                            .setTitleText("oke").show();
+                } else {
+                    new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Add Action")
+                            .setContentText("U wanna add new moderator?")
+                            .setConfirmText("Yes,do it!")
+                            .setConfirmClickListener(sDialog -> {
+                                if (dataAccesObject.handleAddMod(new Admin(name.getText().toString(), pass.getText().toString(), 1))) {
+                                    sDialog.setTitleText("has been Add!")
+                                            .setContentText("Your Moderator has been Add!")
+                                            .setConfirmText("OK")
+                                            .setConfirmClickListener(null)
+                                            .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                    reInitView();
 
-                    } else {
-                        sDialog.setTitleText("Oops...")
-                                .setContentText("Something went wrong!")
-                                .setConfirmText("oke")
-                                .setConfirmClickListener(null)
-                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                    }
+                                } else {
+                                    sDialog.setTitleText("Oops...")
+                                            .setContentText("Something went wrong!")
+                                            .setConfirmText("oke")
+                                            .setConfirmClickListener(null)
+                                            .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                }
 
-                })
-                .show());
+                            })
+                            .show();
+                }
+            }
+        });
     }
 
     private void reInitView() {
-        id.setText("");
+        cp.setText("");
         pass.setText("");
         name.setText("");
         submit.setEnabled(false);

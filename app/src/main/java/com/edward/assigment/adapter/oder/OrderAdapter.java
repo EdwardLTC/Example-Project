@@ -22,8 +22,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     List<Order> mdata;
     OrderCallBack callback;
 
-    public OrderAdapter(List<Order> mdata,OrderCallBack orderCallBack){
-        this.mdata =mdata;
+    public OrderAdapter(List<Order> mdata, OrderCallBack orderCallBack) {
+        this.mdata = mdata;
         this.callback = orderCallBack;
     }
 
@@ -31,22 +31,22 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_order,parent,false);
+                .inflate(R.layout.item_order, parent, false);
         return new OrderViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
-        holder.AdminID.setText(mdata.get(position).get_adminId());
-        holder.bookID.setText(mdata.get(position).get_bookId());
+        holder.oderID.setText(String.valueOf(mdata.get(position).get_id()));
+        holder.AdminID.setText(String.valueOf(mdata.get(position).get_adminId()));
+        holder.bookID.setText(String.valueOf(mdata.get(position).get_bookId()));
         holder.DateCreate.setText(mdata.get(position).getDateCreate());
         holder.DateReturn.setText(mdata.get(position).getDateReturn());
-        String str = mdata.get(position).get_status() == 0 ? "not done" : "done";
+        String str = mdata.get(position).get_status() == 0 ? "..." : "done";
         holder.status.setText(str);
-        if (mdata.get(position).get_status() == 0){
+        if (mdata.get(position).get_status() == 0) {
             holder.neumorphCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#7f2908")));
-        }
-        else {
+        } else {
             holder.neumorphCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#b8f9be")));
         }
 
@@ -61,7 +61,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     public class OrderViewHolder extends RecyclerView.ViewHolder {
 
-        TextView oderID,bookID,AdminID,DateCreate,DateReturn,status,userId;
+        TextView oderID, bookID, AdminID, DateCreate, DateReturn, status, userId;
         NeumorphCardView neumorphCardView;
 
         public OrderViewHolder(@NonNull View itemView) {
@@ -83,7 +83,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                     userId,
                     DateCreate,
                     DateReturn,
-                    status ));
+                    status));
 
 
         }

@@ -19,7 +19,7 @@ import soup.neumorphism.NeumorphButton;
 
 public class AddCategoryFragment extends Fragment {
     View view;
-    EditText id,name;
+    EditText name;
     NeumorphButton btnSubmit;
     DataAccesObject dataAccesObject;
     @Nullable
@@ -34,18 +34,16 @@ public class AddCategoryFragment extends Fragment {
 
     public void initView(){
         name = view.findViewById(R.id.categoryname);
-        id = view.findViewById(R.id.categoryid);
         btnSubmit =view.findViewById(R.id.submitCategory);
     }
 
     public void createDialogAdd(){
-        Category category = new Category(id.getText().toString(),name.getText().toString());
+        Category category = new Category(name.getText().toString());
         if (dataAccesObject.handleAddCategory(category)) {
             new SweetAlertDialog(requireContext(), SweetAlertDialog.SUCCESS_TYPE)
                     .setTitleText("Good job!")
                     .setContentText("You Category has been add!")
                     .show();
-            id.setText("");
             name.setText("");
         }else {
             new SweetAlertDialog(requireContext(), SweetAlertDialog.ERROR_TYPE)

@@ -97,7 +97,7 @@ public class BookDetailsFragment extends Fragment {
         title.setText(String.valueOf(item.getTitle()));
         author.setText(String.valueOf(item.getAuthor()));
         details_desc.setText(String.valueOf(item.getDescription()));
-        String txt = item.getId();
+        String txt = String.valueOf(item.getId());
         item_book_pagesrev.setText(txt);
     }
 
@@ -194,7 +194,7 @@ public class BookDetailsFragment extends Fragment {
                                 .setConfirmText("OK")
                                 .setConfirmClickListener(null)
                                 .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                        requireActivity().onBackPressed();
+                        requireActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
                     } else {
                         sDialog.setTitleText("Oops...")
                                 .setContentText("Something went wrong!")

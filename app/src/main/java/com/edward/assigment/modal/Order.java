@@ -1,27 +1,28 @@
 package com.edward.assigment.modal;
 
 public class Order {
-    public String get_id() {
+
+    public int get_id() {
         return _id;
     }
 
-    public void set_id(String _id) {
+    public void set_id(int _id) {
         this._id = _id;
     }
 
-    public String get_bookId() {
+    public int get_bookId() {
         return _bookId;
     }
 
-    public void set_bookId(String _bookId) {
+    public void set_bookId(int _bookId) {
         this._bookId = _bookId;
     }
 
-    public String get_adminId() {
+    public int get_adminId() {
         return _adminId;
     }
 
-    public void set_adminId(String _adminId) {
+    public void set_adminId(int _adminId) {
         this._adminId = _adminId;
     }
 
@@ -57,15 +58,15 @@ public class Order {
         this._status = _checked;
     }
 
-    private String _id;
-    private String _bookId;
-    private String _adminId;
+    private int _id;
+    private int _bookId;
+    private int _adminId;
     private String _userId;
     private String dateCreate;
     private String dateReturn;
     private int _status;
 
-    public Order(String _id, String _bookId, String _adminId, String _userId, String dateCreate, String dateReturn, int _status) {
+    public Order(int _id, int _bookId, int _adminId, String _userId, String dateCreate, String dateReturn, int _status) {
         this._id = _id;
         this._bookId = _bookId;
         this._adminId = _adminId;
@@ -74,6 +75,13 @@ public class Order {
         this.dateReturn = dateReturn;
         this._status = _status;
     }
-
+    public Order(int _bookId, int _adminId, String _userId, String dateCreate, String dateReturn, int _status) {
+        this._bookId = _bookId;
+        this._adminId = _adminId;
+        this._userId = _userId;
+        this.dateCreate = dateCreate;
+        this.dateReturn = dateReturn;
+        this._status = _status;
+    }
 
 }

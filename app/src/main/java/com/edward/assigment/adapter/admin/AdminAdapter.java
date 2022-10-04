@@ -33,7 +33,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHol
     @Override
     public void onBindViewHolder(@NonNull AdminViewHolder holder, int position) {
         holder.name.setText(mdata.get(position).get_username());
-        holder.id.setText(mdata.get(position).get_id());
+        holder.id.setText(String.valueOf(mdata.get(position).get_id()));
         String m_role = mdata.get(position).get_role() == 0 ? "Admin" : "Moderator";
         holder.role.setText(m_role);
     }
@@ -51,7 +51,6 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHol
 
         public AdminViewHolder(@NonNull View itemView) {
             super(itemView);
-
             name = itemView.findViewById(R.id.nameAdmin);
             id = itemView.findViewById(R.id.idAdmin);
             role = itemView.findViewById(R.id.roleAdmin);

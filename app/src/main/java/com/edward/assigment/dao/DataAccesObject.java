@@ -62,7 +62,7 @@ public class DataAccesObject extends Database {
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
                 do {
-                    list.add(new Admin(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3)));
+                    list.add(new Admin(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3)));
                 } while (cursor.moveToNext());
             }
             cursor.close();
@@ -82,7 +82,7 @@ public class DataAccesObject extends Database {
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
                 do {
-                    list.add(new Book(cursor.getString(0), cursor.getString(1), cursor.getString(2),
+                    list.add(new Book(cursor.getInt(0), cursor.getInt(1), cursor.getString(2),
                             cursor.getString(3), cursor.getInt(4), cursor.getString(5), cursor.getFloat(6)));
                 } while (cursor.moveToNext());
             }
@@ -101,8 +101,8 @@ public class DataAccesObject extends Database {
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
                 do {
-                    list.add(new Order(cursor.getString(0), cursor.getString(1),
-                            cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                    list.add(new Order(cursor.getInt(0), cursor.getInt(1),
+                            cursor.getInt(2), cursor.getString(3), cursor.getString(4),
                             cursor.getString(5), cursor.getInt(6)));
                 } while (cursor.moveToNext());
             }
@@ -121,7 +121,7 @@ public class DataAccesObject extends Database {
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
                 do {
-                    list.add(new Admin(cursor.getString(0), cursor.getString(1), null, cursor.getInt(3)));
+                    list.add(new Admin(cursor.getInt(0), cursor.getString(1), null, cursor.getInt(3)));
                 } while (cursor.moveToNext());
             }
             cursor.close();
@@ -131,16 +131,16 @@ public class DataAccesObject extends Database {
         return list;
     }
 
-    public Admin HandleLoginForAdmin(String userName, String passWord) {
+    public Admin HandleLoginForAdmin(int id, String passWord) {
         SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
         Admin admin = null;
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(
-                    "select * from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_ID + "= '" + userName + "' AND " + KEY_ADMIN_PASSWORD + "='" + passWord + "'", null);
+                    "select * from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_ID + "=? AND " + KEY_ADMIN_PASSWORD + "=?", new String[]{String.valueOf(id),passWord});
 
             cursor.moveToFirst();
             if (cursor.getCount() != 0) {
-                admin = new Admin(cursor.getString(0), cursor.getString(1), null, cursor.getInt(3));
+                admin = new Admin(cursor.getInt(0), cursor.getString(1), null, cursor.getInt(3));
             }
             cursor.close();
         } catch (Exception e) {
@@ -153,11 +153,11 @@ public class DataAccesObject extends Database {
         long result = -1;
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(KEY_BOOKS_ID, book.getId());
         contentValues.put(KEY_BOOKS_NAME, book.getTitle());
         contentValues.put(KEY_BOOKS_AUTHOR, book.getAuthor());
         contentValues.put(KEY_CATEGORY_ID, book.getIdCategory());
         contentValues.put(KEY_BOOKS_DESCRIPTION, book.getDescription());
+        contentValues.put(KEY_BOOKS_RATING,book.getRating());
         try {
             result = sqLiteDatabase.insert(TABLE_NAME_BOOKS, null, contentValues);
 
@@ -185,14 +185,14 @@ public class DataAccesObject extends Database {
         return list;
     }
 
-    public String getCategoryFromName(String name) {
+    public int getCategoryFromName(String name) {
         SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
-        String id = null;
+        int id = -1;
         try {
             Cursor cursor = sqLiteDatabase.rawQuery("select " + KEY_CATEGORY_ID + " from " + TABLE_NAME_CATEGORY + " where " + KEY_CATEGORY_NAME + "=?", new String[]{name});
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
-                id = cursor.getString(0);
+                id = cursor.getInt(0);
             }
             cursor.close();
         } catch (Exception e) {
@@ -201,18 +201,18 @@ public class DataAccesObject extends Database {
         return id;
     }
 
-    public boolean handleRemoveBook(String id) {
+    public boolean handleRemoveBook(int id) {
         long result = -1;
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
         try {
-            result = sqLiteDatabase.delete(TABLE_NAME_BOOKS, KEY_BOOKS_ID + "=?", new String[]{id});
+            result = sqLiteDatabase.delete(TABLE_NAME_BOOKS, KEY_BOOKS_ID + "=?", new String[]{String.valueOf(id)});
         } catch (Exception e) {
             e.printStackTrace();
         }
         return result != -1;
     }
 
-    public boolean handleUpdateBook(String id, String name, String author, String des) {
+    public boolean handleUpdateBook(int id, String name, String author, String des) {
         long result = -1;
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_BOOKS_NAME, name);
@@ -220,7 +220,7 @@ public class DataAccesObject extends Database {
         contentValues.put(KEY_BOOKS_DESCRIPTION, des);
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
         try {
-            result = sqLiteDatabase.update(TABLE_NAME_BOOKS, contentValues, KEY_BOOKS_ID + "=?", new String[]{id});
+            result = sqLiteDatabase.update(TABLE_NAME_BOOKS, contentValues, KEY_BOOKS_ID + "=?", new String[]{String.valueOf(id)});
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -231,7 +231,6 @@ public class DataAccesObject extends Database {
         long result = -1;
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(KEY_CATEGORY_ID, category.get_id());
         contentValues.put(KEY_CATEGORY_NAME, category.get_name());
         try {
             result = sqLiteDatabase.insert(TABLE_NAME_CATEGORY, null, contentValues);
@@ -259,11 +258,11 @@ public class DataAccesObject extends Database {
         return result != -1;
     }
 
-    public boolean handleRemoveMod(String id) {
+    public boolean handleRemoveMod(int id) {
         long result = -1;
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
         try {
-            result = sqLiteDatabase.delete(TABLE_NAME_ADMIN, KEY_ADMIN_ID + "=?", new String[]{id});
+            result = sqLiteDatabase.delete(TABLE_NAME_ADMIN, KEY_ADMIN_ID + "=?", new String[]{String.valueOf(id)});
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -286,11 +285,11 @@ public class DataAccesObject extends Database {
         return name;
     }
 
-    public String GetNameAdminFromId(String id) {
+    public String GetNameAdminFromId(int id) {
         SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
         String name = null;
         try {
-            Cursor cursor = sqLiteDatabase.rawQuery("select " + KEY_ADMIN_USERNAME + " from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_ID + "=?", new String[]{id});
+            Cursor cursor = sqLiteDatabase.rawQuery("select " + KEY_ADMIN_USERNAME + " from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_ID + "=?", new String[]{String.valueOf(id)});
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
                 name = cursor.getString(0);
@@ -318,14 +317,14 @@ public class DataAccesObject extends Database {
         return name;
     }
 
-    public String GetIdBookFromName(String name){
+    public int GetIdBookFromName(String name){
         SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
-        String id = null;
+        int id = -1;
         try {
             Cursor cursor = sqLiteDatabase.rawQuery("select " + KEY_BOOKS_ID + " from " + TABLE_NAME_BOOKS + " where " + KEY_BOOKS_NAME + "=?", new String[]{name});
             if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
-                id = cursor.getString(0);
+                id = cursor.getInt(0);
             }
             cursor.close();
         } catch (Exception e) {
@@ -334,14 +333,14 @@ public class DataAccesObject extends Database {
         return id;
     }
 
-    public boolean handleMarkDoneOrder(String id, String date) {
+    public boolean handleMarkDoneOrder(int id, String date) {
         long result = -1;
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_BILL_DATERETURN, date);
         contentValues.put(KEY_BILL_checked, 1);
         try {
-            result = sqLiteDatabase.update(TABLE_NAME_BILL, contentValues, KEY_BILL_ID + "=?", new String[]{id});
+            result = sqLiteDatabase.update(TABLE_NAME_BILL, contentValues, KEY_BILL_ID + "=?", new String[]{String.valueOf(id)});
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -371,7 +370,6 @@ public class DataAccesObject extends Database {
         long result = -1;
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(KEY_BILL_ID,order.get_id());
         contentValues.put(KEY_BOOKS_ID,order.get_bookId());
         contentValues.put(KEY_ADMIN_ID,order.get_adminId());
         contentValues.put(KEY_USER_ID,order.get_userId());

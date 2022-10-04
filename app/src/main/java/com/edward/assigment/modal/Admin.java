@@ -3,16 +3,16 @@ package com.edward.assigment.modal;
 import java.io.Serializable;
 
 public class Admin implements Serializable {
-    private String _id;
+    private int _id;
     private String _username;
     private String _password;
     private int _role;
 
-    public String get_id() {
+    public int get_id() {
         return _id;
     }
 
-    public void set_id(String _id) {
+    public void set_id(int _id) {
         this._id = _id;
     }
 
@@ -40,10 +40,15 @@ public class Admin implements Serializable {
         this._role = _role;
     }
 
-    public Admin(){}
 
-    public Admin(String _id, String _username, String _password, int _role) {
+    public Admin(int _id, String _username, String _password, int _role) {
         this._id = _id;
+        this._username = _username;
+        this._password = _password;
+        this._role = _role;
+    }
+
+    public Admin( String _username, String _password, int _role) {
         this._username = _username;
         this._password = _password;
         this._role = _role;

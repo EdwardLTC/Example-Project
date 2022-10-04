@@ -57,7 +57,7 @@ public class Database extends SQLiteOpenHelper {
 
         String createCategory = "CREATE TABLE " + TABLE_NAME_CATEGORY +
                 "(" +
-                KEY_CATEGORY_ID + " TEXT PRIMARY KEY, " +
+                KEY_CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_CATEGORY_NAME + " TEXT, " +
                 KEY_CATEGORY_IMAGE + " INTEGER " +
                 " )";
@@ -65,7 +65,7 @@ public class Database extends SQLiteOpenHelper {
 
         String createAdmin = "CREATE TABLE " + TABLE_NAME_ADMIN +
                 "(" +
-                KEY_ADMIN_ID + " TEXT PRIMARY KEY, " +
+                KEY_ADMIN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 KEY_ADMIN_USERNAME + " TEXT, " +
                 KEY_ADMIN_PASSWORD + " TEXT, " +
                 KEY_ADMIN_ROLE + " INTEGER " +
@@ -79,8 +79,8 @@ public class Database extends SQLiteOpenHelper {
 
         String createBook = "CREATE TABLE " + TABLE_NAME_BOOKS +
                 "(" +
-                KEY_BOOKS_ID + " TEXT PRIMARY KEY, " +
-                KEY_CATEGORY_ID + " TEXT,  " +
+                KEY_BOOKS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_CATEGORY_ID + " INTEGER,  " +
                 KEY_BOOKS_NAME + " TEXT, " +
                 KEY_BOOKS_AUTHOR + " TEXT, " +
                 KEY_BOOKS_IMAGE + " INTEGER, " +
@@ -93,9 +93,9 @@ public class Database extends SQLiteOpenHelper {
 
         String createBill = "CREATE TABLE " + TABLE_NAME_BILL +
                 "(" +
-                KEY_BILL_ID + " TEXT PRIMARY KEY, " +
-                KEY_BOOKS_ID + " TEXT, " +
-                KEY_ADMIN_ID + " TEXT, " +
+                KEY_BILL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_BOOKS_ID + " INTEGER, " +
+                KEY_ADMIN_ID + " INTEGER, " +
                 KEY_USER_ID + " TEXT, " +
                 KEY_BILL_DATECREATE + " TEXT, " +
                 KEY_BILL_DATERETURN + " TEXT, " +
@@ -115,36 +115,36 @@ public class Database extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(initUser);
 
         String initAdmin = "INSERT INTO " + TABLE_NAME_ADMIN + " VALUES" +
-                "('A01','Admin','admin',0)," +
-                "('M01','Mod1','admin',1)," +
-                "('M02','Mod2','admin',1)," +
-                "('M03','Mod3','admin',1)," +
-                "('M04','Mod4','admin',1)," +
-                "('M05','Mod5','admin',1)";
+                "(1,'Admin','admin',0)," +
+                "(2,'Mod1','admin',1)," +
+                "(3,'Mod2','admin',1)," +
+                "(4,'Mod3','admin',1)," +
+                "(5,'Mod4','admin',1)," +
+                "(6,'Mod5','admin',1)";
         sqLiteDatabase.execSQL(initAdmin);
 
         String initCategory = "INSERT INTO " + TABLE_NAME_CATEGORY + " VALUES" +
-                "('C1','Sach Cong Nghe1',0)," +
-                "('C2','Sach Cong Nghe2',0)," +
-                "('C3','Sach Cong Nghe3',0)," +
-                "('C4','Sach Cong Nghe4',0)," +
-                "('C5','Sach Cong Nghe5',0)";
+                "(1,'Sach Cong Nghe1',0)," +
+                "(2,'Sach Cong Nghe2',0)," +
+                "(3,'Sach Cong Nghe3',0)," +
+                "(4,'Sach Cong Nghe4',0)," +
+                "(5,'Sach Cong Nghe5',0)";
         sqLiteDatabase.execSQL(initCategory);
 
         String initBook = "INSERT INTO " + TABLE_NAME_BOOKS + " VALUES" +
-                "('B1','C1','E','Edward',0,'Des nay cua sach',3.1)," +
-                "('B2','C2','Ed','Edward',0,'Des nay cua sach',3.1)," +
-                "('B3','C3','Edw','Edward',0,'Des nay cua sach',3.1)," +
-                "('B4','C4','Edwa','Edward',0,'Des nay cua sach',3.1)," +
-                "('B5','C5','Edward','Edward',0,'Des nay cua sach',3.1)";
+                "(1,1,'E','Edward',0,'Des nay cua sach',3.1)," +
+                "(2,2,'Ed','Edward',0,'Des nay cua sach',3.1)," +
+                "(3,3,'Edw','Edward',0,'Des nay cua sach',3.1)," +
+                "(4,4,'Edwa','Edward',0,'Des nay cua sach',3.1)," +
+                "(5,5,'Edward','Edward',0,'Des nay cua sach',3.1)";
         sqLiteDatabase.execSQL(initBook);
 
-        String initBill = "INSERT INTO " + TABLE_NAME_BILL+ " VALUES" +
-                "('Bi1','B1','M01','ps01','22/2/2022','',0)," +
-                "('Bi2','B2','M02','ps02','22/2/2022','22/2/2022',1),"+
-                "('Bi3','B3','M03','ps03','22/2/2022','',0)," +
-                "('Bi4','B4','M04','ps04','22/2/2022','22/2/2022',1)," +
-                "('Bi5','B5','M05','ps05','22/2/2022','',0)";
+        String initBill = "INSERT INTO " + TABLE_NAME_BILL + " VALUES" +
+                "(1,1,2,'ps01','22/2/2022','',0)," +
+                "(2,2,3,'ps02','22/2/2022','22/2/2022',1)," +
+                "(3,3,4,'ps03','22/2/2022','',0)," +
+                "(4,4,5,'ps04','22/2/2022','22/2/2022',1)," +
+                "(5,5,6,'ps05','22/2/2022','',0)";
         sqLiteDatabase.execSQL(initBill);
     }
 

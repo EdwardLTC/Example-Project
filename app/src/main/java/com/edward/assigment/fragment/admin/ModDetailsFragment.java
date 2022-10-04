@@ -56,7 +56,7 @@ public class ModDetailsFragment extends Fragment {
 
     private void initData() {
         name.setText(mod.get_username());
-        id.setText(mod.get_id());
+        id.setText(String.valueOf(mod.get_id()));
         String m_role = mod.get_role() == 0 ? "Admin" : "Moderator";
         role.setText(m_role);
         des.setText("hahahaahahah");

@@ -28,7 +28,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import soup.neumorphism.NeumorphButton;
 
 public class AddOrderFragment extends Fragment {
-    String modID;
+    int modID;
     DataAccesObject dataAccesObject;
     View view;
     Spinner spinner;
@@ -36,7 +36,7 @@ public class AddOrderFragment extends Fragment {
     EditText orderid, userID;
     NeumorphButton btnSubmit;
 
-    public AddOrderFragment(String modID) {
+    public AddOrderFragment(int modID) {
         this.modID = modID;
     }
 
@@ -55,7 +55,6 @@ public class AddOrderFragment extends Fragment {
         spinner = view.findViewById(R.id.bookSpin);
         dayCreate = view.findViewById(R.id.dayCreate);
         modName = view.findViewById(R.id.mod);
-        orderid = view.findViewById(R.id.orderid);
         userID = view.findViewById(R.id.userID);
         btnSubmit = view.findViewById(R.id.submit);
     }
@@ -97,7 +96,7 @@ public class AddOrderFragment extends Fragment {
                 .setConfirmClickListener(sDialog -> {
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     Date date = new Date();
-                    Order order = new Order(orderid.getText().toString(), dataAccesObject.GetIdBookFromName(spinner.getSelectedItem().toString()),
+                    Order order = new Order(dataAccesObject.GetIdBookFromName(spinner.getSelectedItem().toString()),
                             modID, userID.getText().toString(), formatter.format(date), null, 0);
                     if (isValidUserID(order.get_userId())) {
                         if (dataAccesObject.handleAddOrder(order)) {

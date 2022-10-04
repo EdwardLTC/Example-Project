@@ -65,13 +65,13 @@ public class OrderDetailsFragment extends Fragment {
     }
 
     private void fillView() {
-        oderID.setText(order.get_id());
-        bookID.setText(dataAccesObject.GetBookFromId(order.get_bookId()));
+        oderID.setText(String.valueOf(order.get_id()));
+        bookID.setText(dataAccesObject.GetBookFromId(String.valueOf(order.get_bookId())));
         AdminID.setText(dataAccesObject.GetNameAdminFromId(order.get_adminId()));
         userId.setText(dataAccesObject.GetUserNameFromId(order.get_userId()));
         DateCreate.setText(order.getDateCreate());
         DateReturn.setText(order.getDateReturn());
-        String str = order.get_status() == 0 ? "not done" : "done";
+        String str = order.get_status() == 0 ? "..." : "done";
         status.setText(str);
         if (order.get_status() == 0) {
             neumorphCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#7f2908")));

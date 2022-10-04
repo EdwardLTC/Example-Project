@@ -100,7 +100,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                     rate,
                     ratingBar));
 
-
         }
     }
 
