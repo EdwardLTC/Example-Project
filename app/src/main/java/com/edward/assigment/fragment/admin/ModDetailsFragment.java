@@ -59,7 +59,7 @@ public class ModDetailsFragment extends Fragment {
         id.setText(String.valueOf(mod.get_id()));
         String m_role = mod.get_role() == 0 ? "Admin" : "Moderator";
         role.setText(m_role);
-        des.setText("hahahaahahah");
+        des.setText(mod.toString());
     }
 
     private void editBtn() {
@@ -94,7 +94,7 @@ public class ModDetailsFragment extends Fragment {
                                 .setConfirmText("OK")
                                 .setConfirmClickListener(null)
                                 .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                        requireActivity().onBackPressed();
+                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new ModeratorSystemFragment()).commit();
                     } else {
                         sDialog.setTitleText("Oops...")
                                 .setContentText("Something went wrong!")

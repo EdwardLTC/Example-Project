@@ -78,7 +78,7 @@ public class OrderFragment extends Fragment implements OrderCallBack {
         int stt = status.getText().toString().equals("done") ? 1 : 0 ;
         Order tempOrder = new Order(orderid,bookid,adminid,userid,datecreate,datereturns,stt);
 
-        Fragment fragment = new OrderDetailsFragment(tempOrder);
+        Fragment fragment = new OrderDetailsFragment(tempOrder,modID);
         fragment.setSharedElementEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.share_image));
         fragment.setEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.explode));
 

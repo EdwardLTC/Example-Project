@@ -213,7 +213,7 @@
             app:neumorph_shapeType="basin" />
 
         <soup.neumorphism.NeumorphButton
-            android:id="@+id/child2"
+            android:id="@+id/removeOrder"
             style="@style/Widget.Neumorph.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

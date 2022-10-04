@@ -56,11 +56,13 @@ public class Admin implements Serializable {
 
     @Override
     public String toString() {
-        return "Admin{" +
-                "_id='" + _id + '\'' +
-                ", _username='" + _username + '\'' +
-                ", _password='" + _password + '\'' +
-                ", _role=" + _role +
+        return "Admin{" + '\n'+
+                "_id='" + _id + '\n' +
+                ", _username='" + _username + '\n' +
+                ", _role=" + _role + '\n'+
+                ", _Address= N/a'" + '\n'+
+                ", _Phone_num= N/a'" + '\n'+
+                ", _Email= N/a'" + '\n'+
                 '}';
     }
 }

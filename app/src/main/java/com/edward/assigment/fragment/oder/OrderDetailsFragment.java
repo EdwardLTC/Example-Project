@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.edward.assigment.R;
 import com.edward.assigment.dao.DataAccesObject;
+import com.edward.assigment.fragment.admin.ModeratorSystemFragment;
 import com.edward.assigment.modal.Admin;
 import com.edward.assigment.modal.Order;
 
@@ -33,11 +34,13 @@ public class OrderDetailsFragment extends Fragment {
     TextView oderID, bookID, AdminID, DateCreate, DateReturn, status, userId, oderDes;
     NeumorphCardView neumorphCardView;
     Order order;
-    NeumorphButton btnMark;
+    NeumorphButton btnMark, btnRM;
     DataAccesObject dataAccesObject;
+    int modID;
 
-    public OrderDetailsFragment(Order order) {
+    public OrderDetailsFragment(Order order, int modID) {
         this.order = order;
+        this.modID = modID;
     }
 
     @Nullable
@@ -48,6 +51,7 @@ public class OrderDetailsFragment extends Fragment {
         initView();
         fillView();
         markClick();
+        removeClick();
         return view;
     }
 
@@ -62,6 +66,7 @@ public class OrderDetailsFragment extends Fragment {
         status = view.findViewById(R.id.status);
         neumorphCardView = view.findViewById(R.id.card);
         btnMark = view.findViewById(R.id.mrkdone);
+        btnRM = view.findViewById(R.id.removeOrder);
     }
 
     private void fillView() {
@@ -93,7 +98,7 @@ public class OrderDetailsFragment extends Fragment {
                 .setConfirmClickListener(sDialog -> {
                     if (dataAccesObject.handleMarkDoneOrder(order.get_id(), formatter.format(date))) {
                         sDialog.setTitleText("has been Add!")
-                                .setContentText("Your Moderator has been Add!")
+                                .setContentText("Success!")
                                 .setConfirmText("OK")
                                 .setConfirmClickListener(null)
                                 .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
@@ -111,6 +116,29 @@ public class OrderDetailsFragment extends Fragment {
                 })
                 .show());
 
+    }
+
+    private void removeClick() {
+        btnRM.setOnClickListener(view -> new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Remove Action")
+                .setContentText("U wanna remove " + order.get_id() + "?")
+                .setConfirmText("Yes,do it!")
+                .setConfirmClickListener(sDialog -> {
+                    if (dataAccesObject.handleRemoveOrder(order.get_id())) {
+                        sDialog.setTitleText("has been Remove!")
+                                .setContentText("Your order has been remove!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(null)
+                                .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new OrderFragment(modID)).commit();
+                    } else {
+                        sDialog.setTitleText("Oops...")
+                                .setContentText("Something went wrong!")
+                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                    }
+
+                })
+                .show());
     }
 
 }

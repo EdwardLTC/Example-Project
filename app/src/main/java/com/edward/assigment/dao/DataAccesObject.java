@@ -384,4 +384,15 @@ public class DataAccesObject extends Database {
         }
         return result != -1;
     }
+
+    public boolean handleRemoveOrder(int id){
+        long result = -1;
+        SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
+        try {
+            result = sqLiteDatabase.delete(TABLE_NAME_BILL, KEY_BILL_ID + "=?", new String[]{String.valueOf(id)});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result != -1;
+    }
 }

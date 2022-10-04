@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.edward.assigment.MainActivity;
 import com.edward.assigment.R;
 import com.edward.assigment.dao.DataAccesObject;
+import com.edward.assigment.fragment.admin.ModeratorSystemFragment;
 import com.edward.assigment.modal.Book;
 import com.taufiqrahman.reviewratings.BarLabels;
 import com.taufiqrahman.reviewratings.RatingReviews;
@@ -194,7 +195,7 @@ public class BookDetailsFragment extends Fragment {
                                 .setConfirmText("OK")
                                 .setConfirmClickListener(null)
                                 .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                        requireActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,new BooksFragment()).commit();
                     } else {
                         sDialog.setTitleText("Oops...")
                                 .setContentText("Something went wrong!")
