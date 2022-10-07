@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void DoLogin(String username, String pass) {
         try {
-            Admin admin = dataAccesObject.HandleLoginForAdmin(Integer.parseInt(username), pass);
+            Admin admin = dataAccesObject.HandleLoginForAdmin(username, pass);
             if (admin == null) {
                 Toast.makeText(LoginActivity.this, "Error Login", Toast.LENGTH_SHORT).show();
             } else {
@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initToggleButton() {
+        imageView = findViewById(R.id.togglePass);
         imageView.setOnClickListener(view -> {
             Integer integer = (Integer) imageView.getTag();
             integer = integer == null ? 0 : integer;

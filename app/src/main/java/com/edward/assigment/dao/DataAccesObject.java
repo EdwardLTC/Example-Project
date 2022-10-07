@@ -131,12 +131,12 @@ public class DataAccesObject extends Database {
         return list;
     }
 
-    public Admin HandleLoginForAdmin(int id, String passWord) {
+    public Admin HandleLoginForAdmin(String username, String passWord) {
         SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
         Admin admin = null;
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(
-                    "select * from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_ID + "=? AND " + KEY_ADMIN_PASSWORD + "=?", new String[]{String.valueOf(id),passWord});
+                    "select * from " + TABLE_NAME_ADMIN + " where " + KEY_ADMIN_USERNAME + "=? AND " + KEY_ADMIN_PASSWORD + "=?", new String[]{username,passWord});
 
             cursor.moveToFirst();
             if (cursor.getCount() != 0) {

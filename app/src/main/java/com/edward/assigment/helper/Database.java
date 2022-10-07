@@ -72,6 +72,7 @@ public class Database extends SQLiteOpenHelper {
                 " )";
         sqLiteDatabase.execSQL(createAdmin);
 
+        sqLiteDatabase.execSQL("CREATE UNIQUE INDEX " + KEY_ADMIN_USERNAME + " ON " + TABLE_NAME_ADMIN + "(" + KEY_ADMIN_USERNAME + ")");
         String createUser = "CREATE TABLE " + TABLE_NAME_USER +
                 "(" + KEY_USER_ID + " TEXT, " + KEY_USER_name + " TEXT )";
         sqLiteDatabase.execSQL(createUser);

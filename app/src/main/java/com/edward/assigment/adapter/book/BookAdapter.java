@@ -64,7 +64,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.title.setText(filteredData.get(position).getTitle());
         holder.author.setText(filteredData.get(position).getAuthor());
         holder.id.setText(String.valueOf(filteredData.get(position).getId()));
-        holder.rate.setText(String.valueOf(filteredData.get(position).getReview()));
+        holder.rate.setText(String.valueOf(filteredData.get(position).getRating()));
 
     }
 
